@@ -12,4 +12,4 @@ import './blocks/loading'
 import './blocks/form'
 import './blocks/button'
 
-import './modules/template'
+import './modules/start'
