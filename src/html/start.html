@@ -1,0 +1,151 @@
+<div class="page__content page-content data-page">
+    <form class="mb-3 row">
+        <div class="col-3">
+            <div class="column">
+                <header class="column__header mb-3">Настройки параметров прогноза</header>
+                <div class="mb-2 fw-bold">
+                    σ-допустимые отклонения продаж
+                </div>
+                <div class="row form-group mb-3">
+                    <div class="col-6">верхняя граница</div>
+                    <div class="col-6"><input class="form-control" type="text"
+                      placeholder=""></div>
+                </div>
+                <div class="row form-group mb-3">
+                    <div class="col-6">нижняя граница</div>
+                    <div class="col-6"><input class="form-control" type="text"
+                      placeholder=""></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">Доверие остаткам, дней</div>
+                    <div class="col-6"><input class="form-control" type="text"
+                      placeholder=""></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="column">
+                <header class="column__header mb-3">Настройки параметров страхового запаса</header>
+                <div class="row form-group mb-3">
+                    <div class="col-6">Z (колебаний продаж)</div>
+                    <div class="col-6"><input class="form-control" type="text"
+                      placeholder=""></div>
+                </div>
+                <div class="row form-group mb-3">
+                    <div class="col-6">Z (недопрогноза)</div>
+                    <div class="col-6"><input class="form-control" type="text"
+                      placeholder=""></div>
+                </div>
+                <div class="row form-group mb-3">
+                    <div class="col-6">Максимум СЗ, дней</div>
+                    <div class="col-6"><input class="form-control" type="text"
+                      placeholder=""></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">Максимум СЗ, дней % от СГ</div>
+                    <div class="col-6"><input class="form-control" type="text"
+                      placeholder=""></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="column">
+                <header class="column__header mb-3">Настройки параметров заказа</header>
+                <div class="row form-group mb-3">
+                    <div class="col-6">Частота поставки, дней</div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder=""></div>
+                </div>
+                <div class="row form-group mb-3">
+                    <div class="col-6">Коэф-т МП	</div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder=""></div>
+                </div>
+                <div class="row form-group mb-3">
+                    <div class="col-6">Коэф-т МинЗаказа</div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder=""></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="column">
+                <div class="row form-group mb-3">
+                    <div class="col-6">Выбрать дату расчета</div>
+                    <div class="col-6"><input class="form-control" type="date" placeholder=""></div>
+                </div>
+                <button class="btn btn-primary d-block mb-3 w-75" type="submit">Рассчитать</button>
+                <button class="btn btn-outline-primary d-block w-75" type="button">Выгрузить</button>
+            </div>
+        </div>
+    </form>
+    <div class="table-container">
+      <table class="table">
+          <thead>
+            <tr>
+                <th>calc_date</th>
+                <th>storagecode</th>
+                <th>storage	mdmkey</th>
+                <th>code</th>
+                <th>nomenclature</th>
+                <th>unit</th>
+                <th>nomenclature_group</th>
+                <th>expiration</th>
+                <th>shipment</th>
+                <th>minimum_batch</th>
+                <th>final_forecast_sum</th>
+                <th>safety_stock_expiration_days</th>
+                <th>final_order_qty</th>
+                <th>dds</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

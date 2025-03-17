@@ -1,0 +1,38 @@
+.form{
+}
+.form-select{
+  padding: .8rem 2.25rem .8rem 1.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  &:hover{
+    // color: $cl-grey;
+  }
+  &:focus{
+    border-color: $cl-purple-light;
+    box-shadow: 0 0 0 .25rem rgba($cl-purple-light,.25);
+  }
+}
+.form-control{
+  padding: .8rem 1.2rem;
+  font-size: 1.2rem;
+  &:focus{
+    border-color: $cl-purple-light;
+    box-shadow: 0 0 0 .25rem rgba($cl-purple-light,.25);
+  }
+  &--value:disabled{
+    display: none;
+  }
+}
+.form-check-input{
+  &:checked{
+    background-color: $cl-purple;
+    border-color: $cl-purple;
+  }
+  &:focus{
+    box-shadow: 0 0 0 .25rem rgba($cl-purple-light,.25);
+  }
+  &:disabled{
+    background-color: $cl-border;
+    border-color: $cl-border;
+  }
+}

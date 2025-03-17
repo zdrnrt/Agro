@@ -1,0 +1,70 @@
+ // базовый сброс настроек
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline-color: $cl-purple;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+h1{
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+ul, ol,li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+table {
+    min-width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button{
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+ // базовый сброс настроекКОНЕЦ
+ 
+:root{
+    font-size: 10px;
+    line-height: 1.2;
+}
+body {
+    font-family: $main-font;
+    font-size: 1.2rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.page{
+    height: 100vh;
+}
+
+.content{
+    // overflow: scroll;
+}
+
+.danger{
+    color: var(--bs-danger);
+}
+.border-r{
+    border-radius: $border-radius;
+}

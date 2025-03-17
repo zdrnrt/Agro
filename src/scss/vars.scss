@@ -1,0 +1,31 @@
+$main-font: 'Inter', sans-serif;
+
+$cl-purple: #474BAB;
+$cl-purple-light: #CACCF7;
+$cl-grey-light: #FAFAFA;
+$cl-grey-middle: #EAEAF0;
+$cl-grey: #c4c5d7;
+$cl-black: #2C2D31;
+$cl-purple-bright: #3337a2;
+$cl-table-bg: #f1f2ff;
+$cl-table-border: #E7E9EC;
+$cl-white: #fff;
+
+
+$cl-btn-hover: #CACCF7;
+$cl-border: $cl-grey-middle;
+
+$border-radius: 0.8rem;
+
+$transition-time: 0.2s;
+
+:root{
+  --bs-border-radius: 0.8rem;
+  --bs-border-color: #{$cl-grey-middle};
+
+  --bs-link-color: #{$cl-purple};
+  --bs-link-color-rgb: 71, 75, 171;
+  --bs-link-decoration: none;
+  --bs-link-hover-color: #{$cl-purple-light};
+  --bs-link-hover-color-rgb: 201, 204, 247;
+}
