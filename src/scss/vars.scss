@@ -20,6 +20,10 @@ $border-radius: 0.8rem;
 $transition-time: 0.2s;
 
 :root{
+  --bs-body-font-family: #{$main-font};
+  --bs-body-font-size: 1.2rem;
+  --bs-body-line-height: 1.2;
+
   --bs-border-radius: 0.8rem;
   --bs-border-color: #{$cl-grey-middle};
 

@@ -1,5 +1,5 @@
  // базовый сброс настроек
-* {
+ * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -40,16 +40,12 @@ button{
     cursor: pointer;
 }
 
-
- // базовый сброс настроекКОНЕЦ
+ // базовый сброс настроек КОНЕЦ
  
 :root{
     font-size: 10px;
-    line-height: 1.2;
 }
 body {
-    font-family: $main-font;
-    font-size: 1.2rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
