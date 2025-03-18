@@ -13,3 +13,4 @@ import './blocks/form'
 import './blocks/button'
 
 import './modules/calculation'
+import './modules/orders'

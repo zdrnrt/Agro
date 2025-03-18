@@ -1,6 +1,13 @@
 (function(){
-    moduleOpen('./src/html/calculation.html');
+    moduleOpen('./src/html/calculation.html')
+        .then( () => {
+            initialData();
+        });
 })()
+
+function initialData(){
+    // TODO загрузка из localStorage
+}
 
 window.calculationFormSubmit = (event) => {
     event.preventDefault();
@@ -17,37 +24,40 @@ window.calculationFormSubmit = (event) => {
         request[name] = value;
     }
     new Promise( (resolve, reject) => {
-        if (Math.floor(Math.random() * 10) > 5){
-            resolve(request);
-        } else {
-            reject('error!!!!')
-        }
+        setTimeout(() => {
+            const random = Math.floor(Math.random() * 10);
+            console.log(random)
+            if (random > 5){
+                resolve(request);
+            } else {
+                reject('error!!!!')
+            }
+        }, 1000);
     })
         .then( (data) => {
             console.log('then', data);
-            setTimeout( () => {
-                calculationRowDraw();
-            }, 1000)
+            calculationRowDraw();
         })
         .catch( (error) => {
             console.log(error);
             errorText.classList.remove('d-none');
         })
         .finally( () => {
-            setTimeout(() => {
-                form.classList.remove('form--loading');
-                buttonToggleLoading(event.submitter);
-            }, 1000);
+            form.classList.remove('form--loading');
+            buttonToggleLoading(event.submitter);
         })
-    console.log(request);
+    console.log('request', request);
 }
 
 window.calculationRowDraw = () => {
+    
+    const arr = Array.from(Array(14).keys());
+    const length = Math.floor(Math.random() * 10)
+    
     const table = document.getElementById('calculationTable').querySelector('tbody');
     table.innerHTML = '';
-    const arr = Array.from(Array(14).keys());
     let template = ''
-    for (let i = 0; i < 6; i++){
+    for (let i = 0; i < length; i++){
         template += '<tr>';
         arr.forEach( (el) => { template += `<td>${el}</td>`})
         template += '</tr>';

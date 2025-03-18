@@ -9,6 +9,7 @@ export default defineConfig({
 			input: {
 				index: resolve(__dirname, "index.html"),
 				calculation: resolve(__dirname, 'src/html/calculation.html'),
+				orders: resolve(__dirname, 'src/html/orders.html'),
 			}
 		}
 	}

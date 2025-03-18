@@ -6,7 +6,7 @@
   }
 */
 window.moduleOpen = async function(path) {
-  fetch(path)
+  return fetch(path)
       .then(response => {
           if (!response.ok) {
               throw new Error('Реакция сети' + response.statusText);

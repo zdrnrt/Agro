@@ -1,0 +1,8 @@
+.fa{
+  &-circle-check:before {
+    content: "\f058";
+  }
+  &-circle-xmark:before {
+    content: "\f057";
+  }
+}
