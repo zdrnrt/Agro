@@ -15,6 +15,7 @@
     visibility: hidden;
   }
   &--loading{
+    pointer-events: none;
     .spinner-border{
       display: inline-block;
       visibility: visible;

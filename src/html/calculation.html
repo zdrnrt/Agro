@@ -1,50 +1,41 @@
 <div class="page__content page-content data-page">
-    <form class="mb-3 row">
+    <form class="mb-3 row" onsubmit="calculationFormSubmit(event);">
         <div class="col-3">
             <div class="column h-100">
                 <header class="column__header mb-3">Настройки параметров прогноза</header>
-                <div class="mb-2 fw-bold">
-                    σ-допустимые отклонения продаж
+                <div class="row form-group mb-3">
+                    <div class="col-6">верхняя граница, σ</div>
+                    <div class="col-6"><input class="form-control" type="text" name="Upper bound coeff" placeholder="" value="8"></div>
                 </div>
                 <div class="row form-group mb-3">
-                    <div class="col-6">верхняя граница</div>
-                    <div class="col-6"><input class="form-control" type="text"
-                      placeholder=""></div>
-                </div>
-                <div class="row form-group mb-3">
-                    <div class="col-6">нижняя граница</div>
-                    <div class="col-6"><input class="form-control" type="text"
-                      placeholder=""></div>
+                    <div class="col-6">нижняя граница, σ</div>
+                    <div class="col-6"><input class="form-control" type="text" name="Lower bound coeff" placeholder="" value="4"></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-6">Доверие остаткам, дней</div>
-                    <div class="col-6"><input class="form-control" type="text"
-                      placeholder=""></div>
+                    <div class="col-6"><input class="form-control" type="text" name="Trust remains" placeholder="" value="0"></div>
                 </div>
             </div>
         </div>
+        
         <div class="col-3">
             <div class="column h-100">
                 <header class="column__header mb-3">Настройки параметров страхового запаса</header>
                 <div class="row form-group mb-3">
-                    <div class="col-6">Z (колебаний продаж)</div>
-                    <div class="col-6"><input class="form-control" type="text"
-                      placeholder=""></div>
+                    <div class="col-6">Z (колебаний продаж), %</div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="Z coeff fluctuations" value="98"></div>
                 </div>
                 <div class="row form-group mb-3">
-                    <div class="col-6">Z (недопрогноза)</div>
-                    <div class="col-6"><input class="form-control" type="text"
-                      placeholder=""></div>
+                    <div class="col-6">Z (недопрогноза), %</div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="Z coeff under forecast" value="98"></div>
                 </div>
                 <div class="row form-group mb-3">
                     <div class="col-6">Максимум СЗ, дней</div>
-                    <div class="col-6"><input class="form-control" type="text"
-                      placeholder=""></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="Max safety stock days" value="30"></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-6">Максимум СЗ, дней % от СГ</div>
-                    <div class="col-6"><input class="form-control" type="text"
-                      placeholder=""></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="Max safety stock percent" value="50"></div>
                 </div>
             </div>
         </div>
@@ -53,31 +44,40 @@
                 <header class="column__header mb-3">Настройки параметров заказа</header>
                 <div class="row form-group mb-3">
                     <div class="col-6">Частота поставки, дней</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder=""></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="Delivery frequency" value="30"></div>
                 </div>
                 <div class="row form-group mb-3">
-                    <div class="col-6">Коэф-т МП	</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder=""></div>
+                    <div class="col-6">Коэф-т МП, %	</div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="Minimum order quantity percent" value="20"></div>
                 </div>
                 <div class="row form-group mb-3">
-                    <div class="col-6">Коэф-т МинЗаказа</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder=""></div>
+                    <div class="col-6">Коэф-т МинЗаказа, %</div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="Minimum order percent" value="50"></div>
                 </div>
             </div>
         </div>
         <div class="col-3">
-            <div class="column">
+            <div class="column h-100">
                 <div class="row form-group mb-3">
                     <div class="col-6">Выбрать дату расчета</div>
-                    <div class="col-6"><input class="form-control" type="date" placeholder=""></div>
+                    <div class="col-6"><input class="form-control" type="date" placeholder="" name="date"></div>
                 </div>
-                <button class="btn btn-primary d-block mb-3 w-75" type="submit">Рассчитать</button>
-                <button class="btn btn-outline-primary d-block w-75" type="button">Выгрузить</button>
+                <button class="w-100 mb-3 btn btn-primary" type="submit" data-type="submit">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Рассчитать
+                </button>
+                <button class="btn btn-outline-primary d-block w-100" type="submit" data-type="download">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Выгрузить
+                </button>
+                <div id="calculationError" class="mt-3 d-none danger">
+                    Ошибка расчета
+                </div>
             </div>
         </div>
     </form>
     <div class="table-container">
-      <table class="table">
+      <table id="calculationTable" class="table">
           <thead>
             <tr>
                 <th>calc_date</th>

@@ -1,4 +1,7 @@
 .form{
+  &--loading{
+    pointer-events: none;
+  }
 }
 .form-select{
   padding: .8rem 2.25rem .8rem 1.2rem;
