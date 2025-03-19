@@ -29,7 +29,6 @@ window.loadedRowDraw = () => {
     let template = ''
     for (let i = 0; i < data.length; i++){
         template += '<tr>';
-        template += `<td align="center"><input type="checkbox" class="form-check-input" name="file"></td>`;
         for (const key in data[i]){
           template += `<td>${data[i][key]}</td>`;
         }
