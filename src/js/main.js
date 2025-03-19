@@ -14,3 +14,4 @@ import './blocks/button'
 
 import './modules/calculation'
 import './modules/orders'
+import './modules/loaded'

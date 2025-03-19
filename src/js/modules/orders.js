@@ -5,7 +5,7 @@ window.orderOpen = async () => {
       setTimeout(() => {
         ordersRowDraw();
         loadingToggle();
-      }, 1500);
+      }, 1000);
     })
 }
 

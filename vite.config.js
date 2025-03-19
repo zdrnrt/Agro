@@ -10,6 +10,7 @@ export default defineConfig({
 				index: resolve(__dirname, "index.html"),
 				calculation: resolve(__dirname, 'src/html/calculation.html'),
 				orders: resolve(__dirname, 'src/html/orders.html'),
+				loaded: resolve(__dirname, 'src/html/loaded.html'),
 			}
 		}
 	}
