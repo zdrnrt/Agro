@@ -23,6 +23,18 @@ window.calculationFormSubmit = (event) => {
     for (const [name, value] of formData){
         request[name] = value;
     }
+    fetch(`${BASE_URL}/check_auth`, {
+        // method: 'POST',
+        mode: 'no-cors',
+        // body: JSON.stringify(request)
+    })
+        .then( (response) => {
+            console.log(response);
+            form.classList.remove('form--loading');
+            buttonToggleLoading(event.submitter);
+        })
+        .catch( (error) => console.error(error) );
+    /*
     new Promise( (resolve, reject) => {
         setTimeout(() => {
             const random = Math.floor(Math.random() * 10);
@@ -34,18 +46,19 @@ window.calculationFormSubmit = (event) => {
             }
         }, 1000);
     })
-        .then( (data) => {
-            console.log('then', data);
-            calculationRowDraw();
-        })
-        .catch( (error) => {
-            console.log(error);
-            errorText.classList.remove('d-none');
-        })
-        .finally( () => {
-            form.classList.remove('form--loading');
-            buttonToggleLoading(event.submitter);
-        })
+    .then( (data) => {
+        console.log('then', data);
+        calculationRowDraw();
+    })
+    .catch( (error) => {
+        console.log(error);
+        errorText.classList.remove('d-none');
+    })
+    .finally( () => {
+        form.classList.remove('form--loading');
+        buttonToggleLoading(event.submitter);
+    })
+    */
     console.log('request', request);
 }
 

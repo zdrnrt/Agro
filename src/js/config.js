@@ -1,0 +1,1 @@
+window.BASE_URL = 'http://tsup.raketa.im:8888/api';
