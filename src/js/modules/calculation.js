@@ -1,3 +1,5 @@
+import { check_auth } from '../service/api'
+
 (function(){
     moduleOpen('./src/html/calculation.html')
         .then( () => {
@@ -11,11 +13,11 @@ function initialData(){
 
 window.calculationFormSubmit = (event) => {
     event.preventDefault();
-    buttonToggleLoading(event.submitter);
+    // buttonToggleLoading(event.submitter);
     const type = event.submitter.dataset.type;
-    console.log(type)
+    // console.log(type)
     const form = event.target;
-    form.classList.add('form--loading');
+    // form.classList.add('form--loading');
     const formData = new FormData(form);
     const errorText = form.querySelector('#calculationError');
     errorText.classList.add('d-none');
@@ -23,17 +25,14 @@ window.calculationFormSubmit = (event) => {
     for (const [name, value] of formData){
         request[name] = value;
     }
-    fetch(`${BASE_URL}/check_auth`, {
-        // method: 'POST',
-        mode: 'no-cors',
-        // body: JSON.stringify(request)
-    })
+
+    check_auth()
         .then( (response) => {
             console.log(response);
-            form.classList.remove('form--loading');
-            buttonToggleLoading(event.submitter);
         })
-        .catch( (error) => console.error(error) );
+        .catch( (err) => {
+            console.log(err);
+        })
     /*
     new Promise( (resolve, reject) => {
         setTimeout(() => {
@@ -59,7 +58,7 @@ window.calculationFormSubmit = (event) => {
         buttonToggleLoading(event.submitter);
     })
     */
-    console.log('request', request);
+    // console.log('request', request);
 }
 
 window.calculationRowDraw = () => {
