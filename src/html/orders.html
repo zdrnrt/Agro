@@ -4,45 +4,185 @@
           <thead>
             <tr>
                 <th></th>
-                <th>Calc date</th>
-                <th>Calc status</th>
-                <th>Upper bound coeff</th>
-                <th>Lower bound coeff</th>
-                <th>Trust remains</th>
-                <th>Z coeff fluctuations</th>
-                <th>Z coeff under forecast</th>
-                <th>Max safety stock days</th>
-                <th>Max safety stock percent</th>
-                <th>Delivery frequency</th>
-                <th>Minimum order quantity percent</th>
-                <th>Minimum order percent</th>
-                <th>Minimum order quantity percent</th>
-                <th>Minimum order percent</th>
-                <th>Delivery frequency</th>
+                <th>Дата расчет</th>
+                <th>Статус расчета</th>
+                <th>Верхняя граница, σ</th>
+                <th>Нижняя граница, σ</th>
+                <th>Доверие остаткам, дней</th>
+                <th>Z (колебаний продаж), %</th>
+                <th>Z (недопрогноза), %</th>
+                <th>Максимум СЗ, дней</th>
+                <th>Максимум СЗ, дней % от СГ</th>
+                <th>Частота поставки, дней</th>
+                <th>Коэф-т МП, %</th>
+                <th>Коэф-т МинЗаказа, %</th>
+                <th>Логи</th>
+                <!-- <th>Minimum order quantity percent</th> -->
+                <!-- <th>Minimum order percent</th> -->
+                <!-- <th>Delivery frequency</th> -->
             </tr>
           </thead>
           <tbody>
-            <!-- <tr>
-                <td align="center"><a href="" class="fa fa-cloud-download-alt fa-2x"></a></td>
-                <td>07.03.2024</td>
-                <td align="center"><i class="fa fa-circle fa-2x"></i></td>
-                <td>complete</td>
-                <td>SafetyStockCalc</td>
-                <td>20</td>
-                <td>50</td>
-                <td>30</td>
-            </tr>
             <tr>
-                <td align="center"><a href="" class="fa fa-cloud-download-alt fa-2x"></a></td>
-                <td>07.03.2024</td>
-                <td align="center"><i class="fa fa-fa-circle-xmark fa-2x"></i></td>
-                <td>complete</td>
-                <td>SafetyStockCalc</td>
-                <td>20</td>
-                <td>50</td>
-                <td>30</td>
-            </tr> -->
-          </tbody>
+              <td align="center"><button class="btn btn-link" data-id="1" onclick="orderExport(1);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-01-23</td>
+              <td>complete</td>
+              <td>8</td>
+              <td>4</td>
+              <td>0</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="2" onclick="orderExport(2);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-01-23</td>
+              <td>complete</td>
+              <td>8</td>
+              <td>4</td>
+              <td>1</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="23" onclick="orderExport(23);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-03-07</td>
+              <td>complete</td>
+              <td>4</td>
+              <td>4</td>
+              <td>0</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="3" onclick="orderExport(3);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-02-24</td>
+              <td>error</td>
+              <td>8</td>
+              <td>4</td>
+              <td>1</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="14" onclick="orderExport(14);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-03-07</td>
+              <td>complete</td>
+              <td>8</td>
+              <td>4</td>
+              <td>0</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="4" onclick="orderExport(4);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-02-22</td>
+              <td>complete</td>
+              <td>8</td>
+              <td>4</td>
+              <td>1</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="5" onclick="orderExport(5);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-03-06</td>
+              <td>complete</td>
+              <td>8</td>
+              <td>4</td>
+              <td>0</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="15" onclick="orderExport(15);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-03-07</td>
+              <td>complete</td>
+              <td>8</td>
+              <td>4</td>
+              <td>0</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>90</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="24" onclick="orderExport(24);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-03-07</td>
+              <td>complete</td>
+              <td>8</td>
+              <td>4</td>
+              <td>0</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>60</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            
+            <tr>
+              <td align="center"><button class="btn btn-link" data-id="6" onclick="orderExport(6);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+              <td>2025-03-10</td>
+              <td>complete</td>
+              <td>8</td>
+              <td>4</td>
+              <td>0</td>
+              <td>0.98</td>
+              <td>0.98</td>
+              <td>30</td>
+              <td>50</td>
+              <td>30</td>
+              <td>20</td>
+              <td>50</td>
+            </tr>
+            </tbody>
       </table>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { check_auth } from '../service/api'
+import {check_auth, post_order_calc } from '../service/api'
 
 (function(){
     moduleOpen('./src/html/calculation.html')
@@ -26,12 +26,20 @@ window.calculationFormSubmit = (event) => {
         request[name] = value;
     }
 
-    check_auth()
+    // check_auth();
+
+    post_order_calc(formData)
         .then( (response) => {
-            console.log(response);
+            console.log('post_order_calc', response);
+            calculationRowDraw(response.data);
         })
         .catch( (err) => {
-            console.log(err);
+            console.log('post_order_calc', err);
+            errorText.classList.remove('d-none');
+        })
+        .finally( () => {
+            form.classList.remove('form--loading');
+            buttonToggleLoading(event.submitter);
         })
     /*
     new Promise( (resolve, reject) => {
@@ -54,25 +62,13 @@ window.calculationFormSubmit = (event) => {
         errorText.classList.remove('d-none');
     })
     .finally( () => {
-        form.classList.remove('form--loading');
-        buttonToggleLoading(event.submitter);
     })
     */
     // console.log('request', request);
 }
 
-window.calculationRowDraw = () => {
-    
-    const arr = Array.from(Array(14).keys());
-    const length = Math.floor(Math.random() * 10)
-    
+window.calculationRowDraw = (row) => {
     const table = document.getElementById('calculationTable').querySelector('tbody');
     table.innerHTML = '';
-    let template = ''
-    for (let i = 0; i < length; i++){
-        template += '<tr>';
-        arr.forEach( (el) => { template += `<td>${el}</td>`})
-        template += '</tr>';
-    }
-    table.insertAdjacentHTML('beforeend', template);
+    table.insertAdjacentHTML('beforeend', RowDraw(row));
 }

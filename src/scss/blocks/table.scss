@@ -47,8 +47,15 @@
   }
   td, 
   th{
+    vertical-align: middle;
     padding: 0.4rem 1.2rem;
     border: var(--bs-border-width) solid var(--bs-table-border-color);
+  }
+  td{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
   }
   th:first-child,
   td:first-child{

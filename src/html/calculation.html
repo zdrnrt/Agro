@@ -5,15 +5,15 @@
                 <header class="column__header mb-3">Настройки параметров прогноза</header>
                 <div class="row form-group mb-3">
                     <div class="col-6">Верхняя граница, σ</div>
-                    <div class="col-6"><input class="form-control" type="text" name="upper_bound_coeff" placeholder="" value="8"></div>
+                    <div class="col-6"><input class="form-control" type="text" name="upper_bound_coeff" placeholder="" value="8" required></div>
                 </div>
                 <div class="row form-group mb-3">
                     <div class="col-6">Нижняя граница, σ</div>
-                    <div class="col-6"><input class="form-control" type="text" name="lower_bound_coeff" placeholder="" value="4"></div>
+                    <div class="col-6"><input class="form-control" type="text" name="lower_bound_coeff" placeholder="" value="4" required></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-6">Доверие остаткам, дней</div>
-                    <div class="col-6"><input class="form-control" type="text" name="trust_remains" placeholder="" value="0"></div>
+                    <div class="col-6"><input class="form-control" type="text" name="trust_remains" placeholder="" value="0" required></div>
                 </div>
             </div>
         </div>
@@ -23,19 +23,19 @@
                 <header class="column__header mb-3">Настройки параметров страхового запаса</header>
                 <div class="row form-group mb-3">
                     <div class="col-6">Z (колебаний продаж), %</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="z_coeff_fluctuations" value="98"></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="z_coeff_fluctuations" value="98" required></div>
                 </div>
                 <div class="row form-group mb-3">
                     <div class="col-6">Z (недопрогноза), %</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="z_coeff_under_forecast" value="98"></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="z_coeff_under_forecast" value="98" required></div>
                 </div>
                 <div class="row form-group mb-3">
                     <div class="col-6">Максимум СЗ, дней</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="max_safety_stock_days" value="30"></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="max_safety_stock_days" value="30" required></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-6">Максимум СЗ, дней % от СГ</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="max_safety_stock_percent" value="50"></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="max_safety_stock_percent" value="50" required></div>
                 </div>
             </div>
         </div>
@@ -44,15 +44,15 @@
                 <header class="column__header mb-3">Настройки параметров заказа</header>
                 <div class="row form-group mb-3">
                     <div class="col-6">Частота поставки, дней</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="delivery_frequency" value="30"></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="delivery_frequency" value="30" required></div>
                 </div>
                 <div class="row form-group mb-3">
                     <div class="col-6">Коэф-т МП, %	</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="minimum_order_quantity_percent" value="20"></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="minimum_order_quantity_percent" value="20" required></div>
                 </div>
                 <div class="row form-group mb-3">
                     <div class="col-6">Коэф-т МинЗаказа, %</div>
-                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="minimum_order_percent" value="50"></div>
+                    <div class="col-6"><input class="form-control" type="text" placeholder="" name="minimum_order_percent" value="50" required></div>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
             <div class="column h-100">
                 <div class="row form-group mb-3">
                     <div class="col-6">Выбрать дату расчета</div>
-                    <div class="col-6"><input class="form-control" type="date" placeholder="" name="calc_date"></div>
+                    <div class="col-6"><input class="form-control" type="date" placeholder="" name="calc_date" required></div>
                 </div>
                 <button class="w-100 mb-3 btn btn-primary" type="submit" data-type="submit">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -80,6 +80,21 @@
       <table id="calculationTable" class="table">
           <thead>
             <tr>
+                <th></th>
+                <th>Дата расчет</th>
+                <th>Статус расчета</th>
+                <th>Верхняя граница, σ</th>
+                <th>Нижняя граница, σ</th>
+                <th>Доверие остаткам, дней</th>
+                <th>Z (колебаний продаж), %</th>
+                <th>Z (недопрогноза), %</th>
+                <th>Максимум СЗ, дней</th>
+                <th>Максимум СЗ, дней % от СГ</th>
+                <th>Частота поставки, дней</th>
+                <th>Коэф-т МП, %</th>
+                <th>Коэф-т МинЗаказа, %</th>
+                <th>Логи</th>
+                <!--                 
                 <th>calc_date</th>
                 <th>storagecode</th>
                 <th>storage	mdmkey</th>
@@ -94,57 +109,11 @@
                 <th>safety_stock_expiration_days</th>
                 <th>final_order_qty</th>
                 <th>dds</th>
+                 -->
             </tr>
           </thead>
           <tbody>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
-            </tr>
+            
           </tbody>
       </table>
   </div>
