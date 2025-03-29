@@ -25,3 +25,7 @@ export function get_order_calc(request) {
 export function get_order_calc_id(id) {
 	return axios.get(`/api/order_calc/12/`)
 }
+
+export function get_order_calc_export(id) {
+	return axios.get(`/api/order_calc/${id}/`)
+}

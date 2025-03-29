@@ -11,9 +11,17 @@ function initialData(){
     // TODO загрузка из localStorage
 }
 
+/** 
+ * выгрузить
+ * order_calc -> order_calc_export
+ * расчитать
+ * order_calc -> order_calc_result
+ * 
+*/
+
 window.calculationFormSubmit = (event) => {
     event.preventDefault();
-    // buttonToggleLoading(event.submitter);
+    buttonToggleLoading(event.submitter);
     const type = event.submitter.dataset.type;
     // console.log(type)
     const form = event.target;
@@ -21,12 +29,10 @@ window.calculationFormSubmit = (event) => {
     const formData = new FormData(form);
     const errorText = form.querySelector('#calculationError');
     errorText.classList.add('d-none');
-    let request = {}
-    for (const [name, value] of formData){
-        request[name] = value;
-    }
-
-    // check_auth();
+    // let request = {}
+    // for (const [name, value] of formData){
+    //     request[name] = value;
+    // }
 
     post_order_calc(formData)
         .then( (response) => {
