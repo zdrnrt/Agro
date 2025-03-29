@@ -2,10 +2,8 @@ window.loadedOpen = async () => {
   loadingToggle();
   await moduleOpen('./src/html/loaded.html')
     .then( () => {
-      setTimeout(() => {
-        loadedRowDraw();
-        loadingToggle();
-      }, 1500);
+      loadedRowDraw();
+      loadingToggle();
     })
 }
 
@@ -24,15 +22,15 @@ window.loadedRowDraw = () => {
       'status': 'error',
       'date': '19.03.2025',
     }];
-
-    const arr = Array.from(Array(14).keys());
     let template = ''
-    for (let i = 0; i < data.length; i++){
-        template += '<tr>';
-        for (const key in data[i]){
-          template += `<td>${data[i][key]}</td>`;
-        }
-        template += '</tr>';
+    for (const el of data){
+        template += `<tr>
+          <td align="center" data-id="download"><button class="btn btn-link p-0" data-id="${el.id}" onclick="loadedExport(1);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+          <td data-id="id">${el.id}</td>
+          <td data-id="filename">${el.filename}</td>
+          <td data-id="status">${el.status}</td>
+          <td data-id="date">${el.date}</td>
+        </tr>`;
     }
     table.insertAdjacentHTML('beforeend', template);
 }
