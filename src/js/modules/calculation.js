@@ -1,4 +1,4 @@
-import {check_auth, post_order_calc } from '../service/api'
+import {post_order_calc, get_order_calc_result, get_order_calc_export, get_order_calc_id } from '../service/api'
 
 (function(){
     moduleOpen('./src/html/calculation.html')
@@ -19,7 +19,7 @@ function initialData(){
  * 
 */
 
-window.calculationFormSubmit = (event) => {
+window.calculationFormSubmit = async (event) => {
     event.preventDefault();
     buttonToggleLoading(event.submitter);
     const type = event.submitter.dataset.type;
@@ -27,50 +27,70 @@ window.calculationFormSubmit = (event) => {
     const form = event.target;
     // form.classList.add('form--loading');
     const formData = new FormData(form);
-    const errorText = form.querySelector('#calculationError');
+    const statusText = document.getElementById('calculationStatus');
+    statusText.classList.add('d-none');
+    const errorText = document.getElementById('calculationError');
     errorText.classList.add('d-none');
-    // let request = {}
-    // for (const [name, value] of formData){
-    //     request[name] = value;
-    // }
+/*    
+    const calculation = await post_order_calc(formData);
+    try {
+    }
+    catch {
+        
+    }
+    finally {
+        
+    }
+
+    if (type == 'result'){
+        const result = await get_order_calc_result(calculation.data.calc_id);
+        // return get_order_calc_id(data.calc_id)
+    }
+    if (type == 'export'){
+        const file = await get_order_calc_export(calculation.data.calc_id);
+        // return get_order_calc_id(data.calc_id)
+    }
+*/
 
     post_order_calc(formData)
         .then( (response) => {
             console.log('post_order_calc', response);
-            calculationRowDraw(response.data);
+            // calculationRowDraw(response.data);
+            return response.data
+        })
+        .then( (data) => {
+            console.log('req', data);
+            console.log('type', type);
+            statusText.classList.remove('d-none');
+            statusText.textContent = `Расчет создан, идет вычисление...`;
+            if (type == 'result'){
+                // return get_order_calc_result(1234)
+                return get_order_calc_result(data.calc_id)
+                // return get_order_calc_id(data.calc_id)
+            }
+            if (type == 'export'){
+                return get_order_calc_export(data.calc_id)
+                // return get_order_calc_id(data.calc_id)
+            }
+        })
+        .then( (result) => {
+            console.log('result', result);
+            if (type == 'result'){
+                console.log('result', result)
+            }
+            if (type == 'export'){
+                console.log('export', result)
+            }
         })
         .catch( (err) => {
             console.log('post_order_calc', err);
+            // statusText.classList.add('d-none');
             errorText.classList.remove('d-none');
         })
         .finally( () => {
             form.classList.remove('form--loading');
             buttonToggleLoading(event.submitter);
         })
-    /*
-    new Promise( (resolve, reject) => {
-        setTimeout(() => {
-            const random = Math.floor(Math.random() * 10);
-            console.log(random)
-            if (random > 5){
-                resolve(request);
-            } else {
-                reject('error!!!!')
-            }
-        }, 1000);
-    })
-    .then( (data) => {
-        console.log('then', data);
-        calculationRowDraw();
-    })
-    .catch( (error) => {
-        console.log(error);
-        errorText.classList.remove('d-none');
-    })
-    .finally( () => {
-    })
-    */
-    // console.log('request', request);
 }
 
 window.calculationRowDraw = (row) => {

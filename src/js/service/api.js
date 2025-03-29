@@ -11,21 +11,27 @@ export function post_order_calc(formData) {
 	return axios.postForm(
 		'/api/order_calc/',
 		formData,
-		// {
-		// 	headers: {
-		// 		'Content-Type': 'multipart/form-data'
-		// 	}
-		// }
 	)
+	// return new Promise( (resolve) => {
+	// 	resolve({
+	// 		data: {
+	// 			calc_id: 1123
+	// 		}
+	// 	})
+	// })
 }
 export function get_order_calc(request) {
 	return axios.get('/api/order_calc/')
 }
 
 export function get_order_calc_id(id) {
-	return axios.get(`/api/order_calc/12/`)
+	return axios.get(`/api/order12/`)
+}
+
+export function get_order_calc_result(id) {
+	return axios.get(`/api/order_calc/${id}/result/`)
 }
 
 export function get_order_calc_export(id) {
-	return axios.get(`/api/order_calc/${id}/`)
+	return axios.get(`/api/order_calc/${id}/export/`)
 }
