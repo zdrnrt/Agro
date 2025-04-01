@@ -1,29 +1,29 @@
 <div class="page__content page-content data-page">
-    <div class="table-container">
-      <table id="ordersTable" class="table orders-table">
-          <thead>
-            <tr>
-                <th></th>
-                <th>Дата расчет</th>
-                <th>Статус расчета</th>
-                <th>Верхняя граница, σ</th>
-                <th>Нижняя граница, σ</th>
-                <th>Доверие остаткам, дней</th>
-                <th>Z (колебаний продаж), %</th>
-                <th>Z (недопрогноза), %</th>
-                <th>Максимум СЗ, дней</th>
-                <th>Максимум СЗ, дней % от СГ</th>
-                <th>Частота поставки, дней</th>
-                <th>Коэф-т МП, %</th>
-                <th>Коэф-т МинЗаказа, %</th>
-                <th style="max-width: 120px;">Логи</th>
-                <!-- <th>Minimum order quantity percent</th> -->
-                <!-- <th>Minimum order percent</th> -->
-                <!-- <th>Delivery frequency</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
+  <div class="table-container mb-3">
+    <table id="ordersTable" class="table orders-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Дата расчет</th>
+          <th>Статус расчета</th>
+          <th>Верхняя граница, σ</th>
+          <th>Нижняя граница, σ</th>
+          <th>Доверие остаткам, дней</th>
+          <th>Z (колебаний продаж), %</th>
+          <th>Z (недопрогноза), %</th>
+          <th>Максимум СЗ, дней</th>
+          <th>Максимум СЗ, дней % от СГ</th>
+          <th>Частота поставки, дней</th>
+          <th>Коэф-т МП, %</th>
+          <th>Коэф-т МинЗаказа, %</th>
+          <th style="max-width: 120px;">Логи</th>
+          <!-- <th>Minimum order quantity percent</th> -->
+          <!-- <th>Minimum order percent</th> -->
+          <!-- <th>Delivery frequency</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
               <td align="center"><button class="btn btn-link p-0" data-id="1" onclick="orderExport(1);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
               <td>2025-01-23</td>
               <td>complete</td>
@@ -37,8 +37,12 @@
               <td>30</td>
               <td>20</td>
               <td>50</td>
-            </tr>
-            </tbody>
-      </table>
+            </tr> -->
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <button id="ordersMore" class="btn btn-outline-primary" data-page="2"
+      onclick="ordersLoad(this.dataset.page);">Загрузить еще</button>
   </div>
 </div>
