@@ -35,3 +35,7 @@ export function get_order_calc_result(id) {
 export function get_order_calc_export(id) {
 	return axios.get(`/api/order_calc/${id}/export/`)
 }
+
+export function get_imported_files(page) {
+	return axios.get(`/api/imported_files/?page_size=100&page=${page}`)
+}

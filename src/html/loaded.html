@@ -1,49 +1,27 @@
 <div class="page__content page-content data-page">
-    <div class="table-container">
+    <div class="table-container mb-3">
       <table id="loadedTable" class="table">
         <colgroup>
           <col width="5%">
-          <col width="5%">
-          <col width="60%">
+          <col width="50%">
+          <col width="15%">
           <col width="15%">
           <col width="15%">
         </colgroup>
           <thead>
             <tr>
-              <th></th>
               <th>id</th>
-              <th>Наименование файла</th>
+              <th>Название файла</th>
               <th>Статус загрузки</th>
-              <th>Дата загрузки</th>
+              <th>Дата создания</th>
+              <th>Дата изменения</th>
             </tr>
           </thead>
           <tbody>
-            <!-- <td data-id="download"><button class="btn btn-link" data-id="id" onclick="loadedExport(1);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
-            <td data-id="id">id</td>
-            <td data-id="filename">filename</td>
-            <td data-id="status">status</td>
-            <td data-id="date of creation">date of creation</td> -->
-            <!-- <tr>
-                <td align="center"><a href="" class="fa fa-cloud-download-alt fa-2x"></a></td>
-                <td>07.03.2024</td>
-                <td align="center"><i class="fa fa-circle fa-2x"></i></td>
-                <td>complete</td>
-                <td>SafetyStockCalc</td>
-                <td>20</td>
-                <td>50</td>
-                <td>30</td>
-            </tr>
-            <tr>
-                <td align="center"><a href="" class="fa fa-cloud-download-alt fa-2x"></a></td>
-                <td>07.03.2024</td>
-                <td align="center"><i class="fa fa-fa-circle-xmark fa-2x"></i></td>
-                <td>complete</td>
-                <td>SafetyStockCalc</td>
-                <td>20</td>
-                <td>50</td>
-                <td>30</td>
-            </tr> -->
           </tbody>
       </table>
+  </div>
+  <div>
+    <button id="loadedMore" class="btn btn-outline-primary" data-count="" data-page="2" onclick="loadedLoadFiles(this.dataset.page);">Загрузить еще</button>
   </div>
 </div>

@@ -1,36 +1,48 @@
+import {get_imported_files} from '../service/api';
+import {format} from 'date-fns';
+
 window.loadedOpen = async () => {
   loadingToggle();
   await moduleOpen('./src/html/loaded.html')
     .then( () => {
-      loadedRowDraw();
+      loadedLoadFiles();
+      loadingToggle();
+    })
+  }
+  
+window.loadedLoadFiles = (page = 1) => {
+  loadingToggle(page);
+  return get_imported_files(page)
+    .then( (response) => {
+      const { page_count, results } = response.data;
+      loadedRowDraw(results);
+      loadedUpdateMore({page_count: page_count, page: Number(page) + 1})
+    })
+    .finally( () => {
       loadingToggle();
     })
 }
 
-window.loadedRowDraw = () => {
+function loadedRowDraw(list) {
     const table = document.getElementById('loadedTable').querySelector('tbody');
-    table.innerHTML = '';
-    const data = [{
-      'id': 123,
-      'filename': 'file',
-      'status': 'success',
-      'date': '10.03.2025',
-    },
-    {
-      'id': 321,
-      'filename': 'file2',
-      'status': 'error',
-      'date': '19.03.2025',
-    }];
     let template = ''
-    for (const el of data){
+    for (const el of list){
         template += `<tr>
-          <td align="center" data-id="download"><button class="btn btn-link p-0" data-id="${el.id}" onclick="loadedExport(1);"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
           <td data-id="id">${el.id}</td>
           <td data-id="filename">${el.filename}</td>
           <td data-id="status">${el.status}</td>
-          <td data-id="date">${el.date}</td>
+          <td data-id="create_dt">${format(new Date(el.create_dt), 'dd.LL.yyy HH:mm')}</td>
+          <td data-id="change_dt">${format(new Date(el.change_dt), 'dd.LL.yyy HH:mm')}</td>
         </tr>`;
     }
     table.insertAdjacentHTML('beforeend', template);
+}
+
+function loadedUpdateMore(request){
+  const {page_count, page} = request;
+  const btn = document.getElementById('loadedMore');
+  btn.dataset.page = page;
+  if (page_count < page){
+    btn.disabled = true;
+  }
 }
