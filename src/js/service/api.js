@@ -20,8 +20,8 @@ export function post_order_calc(formData) {
 	// 	})
 	// })
 }
-export function get_order_calc(request) {
-	return axios.get('/api/order_calc/')
+export function get_order_calc(page) {
+	return axios.get(`/api/order_calc/?page_size=30&page=${page}`)
 }
 
 export function get_order_calc_id(id) {
@@ -37,5 +37,5 @@ export function get_order_calc_export(id) {
 }
 
 export function get_imported_files(page) {
-	return axios.get(`/api/imported_files/?page_size=100&page=${page}`)
+	return axios.get(`/api/imported_files/?page_size=30&page=${page}`)
 }

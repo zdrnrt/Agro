@@ -11,7 +11,7 @@ window.loadedOpen = async () => {
   }
   
 window.loadedLoadFiles = (page = 1) => {
-  loadingToggle(page);
+  loadingToggle();
   return get_imported_files(page)
     .then( (response) => {
       const { page_count, results } = response.data;
