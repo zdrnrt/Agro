@@ -51,11 +51,7 @@ body {
 }
 
 .page{
-    height: 100vh;
-}
-
-.content{
-    // overflow: scroll;
+    min-height: 100vh;
 }
 
 .danger{

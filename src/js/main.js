@@ -5,7 +5,7 @@ import '../scss/style.scss';
 
 import './config';
 
-import './service/openModule';
+import './service/tools';
 
 import './blocks/header';
 import './blocks/aside';

@@ -1,11 +1,19 @@
-/*
-  тип для данных открытия модуля
-  type request = {
-    path: './src/html/template.html',
-    callback: [ fn1, fn2, fn3 ]
-  }
-*/
-window.moduleOpen = async function(path) {
+export function downloadFile(response) {
+
+  const {headers, data} = response;
+
+  const name = headers['content-disposition'].split('; ')[1].replaceAll('"', '').split('=')[1];
+
+  const url = window.URL.createObjectURL(new Blob([data]));
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', name);
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+window.moduleOpen = function(path) {
   return fetch(path)
       .then(response => {
           if (!response.ok) {

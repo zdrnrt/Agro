@@ -12,20 +12,13 @@ export function post_order_calc(formData) {
 		'/api/order_calc/',
 		formData,
 	)
-	// return new Promise( (resolve) => {
-	// 	resolve({
-	// 		data: {
-	// 			calc_id: 1123
-	// 		}
-	// 	})
-	// })
 }
 export function get_order_calc(page) {
 	return axios.get(`/api/order_calc/?page_size=30&page=${page}`)
 }
 
 export function get_order_calc_id(id) {
-	return axios.get(`/api/order12/`)
+	return axios.get(`/api/order/${id}`)
 }
 
 export function get_order_calc_result(id) {
@@ -33,7 +26,9 @@ export function get_order_calc_result(id) {
 }
 
 export function get_order_calc_export(id) {
-	return axios.get(`/api/order_calc/${id}/export/`)
+	return axios.get(`/api/order_calc/${id}/export`, {
+		responseType: 'blob'
+	})
 }
 
 export function get_imported_files(page) {
