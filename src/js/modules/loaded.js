@@ -9,9 +9,820 @@ window.loadedOpen = async () => {
       loadingToggle();
     })
   }
-  
+
+const testResult = {
+  "count": 285,
+  "results": [
+      {
+          "id": 1,
+          "create_dt": "2025-02-22T01:58:01.282885+03:00",
+          "change_dt": "2025-02-22T01:58:01.282909+03:00",
+          "filename": "20241025_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 2,
+          "create_dt": "2025-02-22T01:58:01.354947+03:00",
+          "change_dt": "2025-02-22T01:58:01.354969+03:00",
+          "filename": "20241026_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 3,
+          "create_dt": "2025-02-22T01:58:01.552717+03:00",
+          "change_dt": "2025-02-22T01:58:01.552741+03:00",
+          "filename": "20241027_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 4,
+          "create_dt": "2025-02-22T01:58:01.629111+03:00",
+          "change_dt": "2025-02-22T01:58:01.629135+03:00",
+          "filename": "20241028_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 5,
+          "create_dt": "2025-02-22T01:58:01.705308+03:00",
+          "change_dt": "2025-02-22T01:58:01.705332+03:00",
+          "filename": "20241029_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 6,
+          "create_dt": "2025-02-22T01:58:01.792487+03:00",
+          "change_dt": "2025-02-22T01:58:01.792515+03:00",
+          "filename": "20241030_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 7,
+          "create_dt": "2025-02-22T01:58:02.007449+03:00",
+          "change_dt": "2025-02-22T01:58:02.007473+03:00",
+          "filename": "20241031_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 8,
+          "create_dt": "2025-02-22T01:58:02.099668+03:00",
+          "change_dt": "2025-02-22T01:58:02.099694+03:00",
+          "filename": "20241101_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 9,
+          "create_dt": "2025-02-22T01:58:02.197521+03:00",
+          "change_dt": "2025-02-22T01:58:02.197545+03:00",
+          "filename": "20241102_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 10,
+          "create_dt": "2025-02-22T01:58:02.294798+03:00",
+          "change_dt": "2025-02-22T01:58:02.294824+03:00",
+          "filename": "20241103_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 11,
+          "create_dt": "2025-02-22T01:58:02.522345+03:00",
+          "change_dt": "2025-02-22T01:58:02.522370+03:00",
+          "filename": "20241104_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 12,
+          "create_dt": "2025-02-22T01:58:02.611395+03:00",
+          "change_dt": "2025-02-22T01:58:02.611420+03:00",
+          "filename": "20241105_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 13,
+          "create_dt": "2025-02-22T01:58:02.713402+03:00",
+          "change_dt": "2025-02-22T01:58:02.713428+03:00",
+          "filename": "20241106_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 14,
+          "create_dt": "2025-02-22T01:58:02.817295+03:00",
+          "change_dt": "2025-02-22T01:58:02.817321+03:00",
+          "filename": "20241107_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 15,
+          "create_dt": "2025-02-22T01:58:03.037166+03:00",
+          "change_dt": "2025-02-22T01:58:03.037191+03:00",
+          "filename": "20241108_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 16,
+          "create_dt": "2025-02-22T01:58:03.117374+03:00",
+          "change_dt": "2025-02-22T01:58:03.117397+03:00",
+          "filename": "20241109_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 17,
+          "create_dt": "2025-02-22T01:58:03.198965+03:00",
+          "change_dt": "2025-02-22T01:58:03.198990+03:00",
+          "filename": "20241110_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 18,
+          "create_dt": "2025-02-22T01:58:03.293116+03:00",
+          "change_dt": "2025-02-22T01:58:03.293138+03:00",
+          "filename": "20241111_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 19,
+          "create_dt": "2025-02-22T01:58:03.382843+03:00",
+          "change_dt": "2025-02-22T01:58:03.382865+03:00",
+          "filename": "20241112_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 20,
+          "create_dt": "2025-02-22T01:58:03.601008+03:00",
+          "change_dt": "2025-02-22T01:58:03.601033+03:00",
+          "filename": "20241113_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 21,
+          "create_dt": "2025-02-22T01:58:03.684743+03:00",
+          "change_dt": "2025-02-22T01:58:03.684767+03:00",
+          "filename": "20241114_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 22,
+          "create_dt": "2025-02-22T01:58:03.765562+03:00",
+          "change_dt": "2025-02-22T01:58:03.765586+03:00",
+          "filename": "20241115_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 23,
+          "create_dt": "2025-02-22T01:58:03.849443+03:00",
+          "change_dt": "2025-02-22T01:58:03.849468+03:00",
+          "filename": "20241116_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 24,
+          "create_dt": "2025-02-22T01:58:04.050558+03:00",
+          "change_dt": "2025-02-22T01:58:04.050583+03:00",
+          "filename": "20241117_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 25,
+          "create_dt": "2025-02-22T01:58:04.128312+03:00",
+          "change_dt": "2025-02-22T01:58:04.128336+03:00",
+          "filename": "20241118_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 26,
+          "create_dt": "2025-02-22T01:58:04.220003+03:00",
+          "change_dt": "2025-02-22T01:58:04.220028+03:00",
+          "filename": "20241119_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 27,
+          "create_dt": "2025-02-22T01:58:04.294811+03:00",
+          "change_dt": "2025-02-22T01:58:04.294836+03:00",
+          "filename": "20241120_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 28,
+          "create_dt": "2025-02-22T01:58:04.496709+03:00",
+          "change_dt": "2025-02-22T01:58:04.496732+03:00",
+          "filename": "20241121_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 29,
+          "create_dt": "2025-02-22T01:58:04.589903+03:00",
+          "change_dt": "2025-02-22T01:58:04.589928+03:00",
+          "filename": "20241122_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 30,
+          "create_dt": "2025-02-22T01:58:04.671946+03:00",
+          "change_dt": "2025-02-22T01:58:04.671970+03:00",
+          "filename": "20241123_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 31,
+          "create_dt": "2025-02-22T01:58:04.745505+03:00",
+          "change_dt": "2025-02-22T01:58:04.745527+03:00",
+          "filename": "20241124_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 32,
+          "create_dt": "2025-02-22T01:58:04.934825+03:00",
+          "change_dt": "2025-02-22T01:58:04.934848+03:00",
+          "filename": "20241125_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 33,
+          "create_dt": "2025-02-22T01:58:05.015880+03:00",
+          "change_dt": "2025-02-22T01:58:05.015901+03:00",
+          "filename": "20241126_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 34,
+          "create_dt": "2025-02-22T01:58:05.099728+03:00",
+          "change_dt": "2025-02-22T01:58:05.099751+03:00",
+          "filename": "20241127_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 35,
+          "create_dt": "2025-02-22T01:58:05.183838+03:00",
+          "change_dt": "2025-02-22T01:58:05.183861+03:00",
+          "filename": "20241128_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 36,
+          "create_dt": "2025-02-22T01:58:05.381560+03:00",
+          "change_dt": "2025-02-22T01:58:05.381585+03:00",
+          "filename": "20241129_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 37,
+          "create_dt": "2025-02-22T01:58:05.482039+03:00",
+          "change_dt": "2025-02-22T01:58:05.482063+03:00",
+          "filename": "20241130_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 38,
+          "create_dt": "2025-02-22T01:58:05.575275+03:00",
+          "change_dt": "2025-02-22T01:58:05.575299+03:00",
+          "filename": "20241201_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 39,
+          "create_dt": "2025-02-22T01:58:05.671404+03:00",
+          "change_dt": "2025-02-22T01:58:05.671429+03:00",
+          "filename": "20241202_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 40,
+          "create_dt": "2025-02-22T01:58:05.898186+03:00",
+          "change_dt": "2025-02-22T01:58:05.898212+03:00",
+          "filename": "20241203_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 41,
+          "create_dt": "2025-02-22T01:58:05.999408+03:00",
+          "change_dt": "2025-02-22T01:58:05.999431+03:00",
+          "filename": "20241204_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 42,
+          "create_dt": "2025-02-22T01:58:06.084894+03:00",
+          "change_dt": "2025-02-22T01:58:06.084917+03:00",
+          "filename": "20241205_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 43,
+          "create_dt": "2025-02-22T01:58:06.311545+03:00",
+          "change_dt": "2025-02-22T01:58:06.311569+03:00",
+          "filename": "20241206_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 44,
+          "create_dt": "2025-02-22T01:58:06.404627+03:00",
+          "change_dt": "2025-02-22T01:58:06.404649+03:00",
+          "filename": "20241207_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 45,
+          "create_dt": "2025-02-22T01:58:06.488575+03:00",
+          "change_dt": "2025-02-22T01:58:06.488598+03:00",
+          "filename": "20241208_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 46,
+          "create_dt": "2025-02-22T01:58:06.596709+03:00",
+          "change_dt": "2025-02-22T01:58:06.596731+03:00",
+          "filename": "20241209_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 47,
+          "create_dt": "2025-02-22T01:58:06.684586+03:00",
+          "change_dt": "2025-02-22T01:58:06.684611+03:00",
+          "filename": "20241210_nomenclature.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 48,
+          "create_dt": "2025-02-22T01:58:06.832735+03:00",
+          "change_dt": "2025-02-22T01:58:06.832751+03:00",
+          "filename": "20241211_nomenclature.csv",
+          "log": null,
+          "status": "fail"
+      },
+      {
+          "id": 49,
+          "create_dt": "2025-02-22T01:58:21.932184+03:00",
+          "change_dt": "2025-02-22T01:58:21.932203+03:00",
+          "filename": "20241211_nomenclature.csv",
+          "log": null,
+          "status": "fail"
+      },
+      {
+          "id": 50,
+          "create_dt": "2025-02-22T01:58:53.199998+03:00",
+          "change_dt": "2025-02-22T01:58:53.200030+03:00",
+          "filename": "20241211_nomenclature.csv",
+          "log": null,
+          "status": "fail"
+      },
+      {
+          "id": 51,
+          "create_dt": "2025-02-22T02:16:07.506690+03:00",
+          "change_dt": "2025-02-22T02:16:07.506707+03:00",
+          "filename": "20241211_nomenclature.csv",
+          "log": null,
+          "status": "fail"
+      },
+      {
+          "id": 52,
+          "create_dt": "2025-02-22T02:24:07.933767+03:00",
+          "change_dt": "2025-02-22T02:24:07.933792+03:00",
+          "filename": "20230101_20250121_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 53,
+          "create_dt": "2025-02-22T02:24:08.092716+03:00",
+          "change_dt": "2025-02-22T02:24:08.092752+03:00",
+          "filename": "20241106_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 54,
+          "create_dt": "2025-02-22T02:24:08.242730+03:00",
+          "change_dt": "2025-02-22T02:24:08.242756+03:00",
+          "filename": "20241107_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 55,
+          "create_dt": "2025-02-22T02:24:08.392730+03:00",
+          "change_dt": "2025-02-22T02:24:08.392753+03:00",
+          "filename": "20241108_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 56,
+          "create_dt": "2025-02-22T02:24:08.541631+03:00",
+          "change_dt": "2025-02-22T02:24:08.541656+03:00",
+          "filename": "20241109_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 57,
+          "create_dt": "2025-02-22T02:24:08.690813+03:00",
+          "change_dt": "2025-02-22T02:24:08.690841+03:00",
+          "filename": "20241110_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 58,
+          "create_dt": "2025-02-22T02:24:08.845772+03:00",
+          "change_dt": "2025-02-22T02:24:08.845796+03:00",
+          "filename": "20241111_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 59,
+          "create_dt": "2025-02-22T02:24:08.997986+03:00",
+          "change_dt": "2025-02-22T02:24:08.998010+03:00",
+          "filename": "20241113_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 60,
+          "create_dt": "2025-02-22T02:24:09.159949+03:00",
+          "change_dt": "2025-02-22T02:24:09.159976+03:00",
+          "filename": "20241114_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 61,
+          "create_dt": "2025-02-22T02:24:09.318424+03:00",
+          "change_dt": "2025-02-22T02:24:09.318449+03:00",
+          "filename": "20241115_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 62,
+          "create_dt": "2025-02-22T02:24:09.479292+03:00",
+          "change_dt": "2025-02-22T02:24:09.479317+03:00",
+          "filename": "20241116_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 63,
+          "create_dt": "2025-02-22T02:24:09.635228+03:00",
+          "change_dt": "2025-02-22T02:24:09.635255+03:00",
+          "filename": "20241118_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 64,
+          "create_dt": "2025-02-22T02:24:09.792519+03:00",
+          "change_dt": "2025-02-22T02:24:09.792544+03:00",
+          "filename": "20241119_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 65,
+          "create_dt": "2025-02-22T02:24:09.945622+03:00",
+          "change_dt": "2025-02-22T02:24:09.945646+03:00",
+          "filename": "20241120_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 66,
+          "create_dt": "2025-02-22T02:24:10.106609+03:00",
+          "change_dt": "2025-02-22T02:24:10.106633+03:00",
+          "filename": "20241121_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 67,
+          "create_dt": "2025-02-22T02:24:10.264961+03:00",
+          "change_dt": "2025-02-22T02:24:10.264988+03:00",
+          "filename": "20241122_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 68,
+          "create_dt": "2025-02-22T02:24:10.419501+03:00",
+          "change_dt": "2025-02-22T02:24:10.419526+03:00",
+          "filename": "20241123_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 69,
+          "create_dt": "2025-02-22T02:24:10.577198+03:00",
+          "change_dt": "2025-02-22T02:24:10.577222+03:00",
+          "filename": "20241124_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 70,
+          "create_dt": "2025-02-22T02:24:10.730691+03:00",
+          "change_dt": "2025-02-22T02:24:10.730716+03:00",
+          "filename": "20241125_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 71,
+          "create_dt": "2025-02-22T02:24:10.896015+03:00",
+          "change_dt": "2025-02-22T02:24:10.896039+03:00",
+          "filename": "20241126_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 72,
+          "create_dt": "2025-02-22T02:24:11.055927+03:00",
+          "change_dt": "2025-02-22T02:24:11.055951+03:00",
+          "filename": "20241127_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 73,
+          "create_dt": "2025-02-22T02:24:11.210246+03:00",
+          "change_dt": "2025-02-22T02:24:11.210272+03:00",
+          "filename": "20241128_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 74,
+          "create_dt": "2025-02-22T02:24:11.369815+03:00",
+          "change_dt": "2025-02-22T02:24:11.369840+03:00",
+          "filename": "20241129_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 75,
+          "create_dt": "2025-02-22T02:24:11.530977+03:00",
+          "change_dt": "2025-02-22T02:24:11.531001+03:00",
+          "filename": "20241130_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 76,
+          "create_dt": "2025-02-22T02:24:11.687757+03:00",
+          "change_dt": "2025-02-22T02:24:11.687782+03:00",
+          "filename": "20241201_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 77,
+          "create_dt": "2025-02-22T02:24:11.954496+03:00",
+          "change_dt": "2025-02-22T02:24:11.954523+03:00",
+          "filename": "20241202_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 78,
+          "create_dt": "2025-02-22T02:24:12.219058+03:00",
+          "change_dt": "2025-02-22T02:24:12.219085+03:00",
+          "filename": "20241203_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 79,
+          "create_dt": "2025-02-22T02:24:12.479789+03:00",
+          "change_dt": "2025-02-22T02:24:12.479813+03:00",
+          "filename": "20241204_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 80,
+          "create_dt": "2025-02-22T02:24:12.740697+03:00",
+          "change_dt": "2025-02-22T02:24:12.740723+03:00",
+          "filename": "20241205_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 81,
+          "create_dt": "2025-02-22T02:24:13.111098+03:00",
+          "change_dt": "2025-02-22T02:24:13.111127+03:00",
+          "filename": "20241206_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 82,
+          "create_dt": "2025-02-22T02:24:13.389502+03:00",
+          "change_dt": "2025-02-22T02:24:13.389528+03:00",
+          "filename": "20241207_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 83,
+          "create_dt": "2025-02-22T02:24:13.644992+03:00",
+          "change_dt": "2025-02-22T02:24:13.645017+03:00",
+          "filename": "20241210_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 84,
+          "create_dt": "2025-02-22T02:24:13.913725+03:00",
+          "change_dt": "2025-02-22T02:24:13.913752+03:00",
+          "filename": "20241211_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 85,
+          "create_dt": "2025-02-22T02:24:14.284798+03:00",
+          "change_dt": "2025-02-22T02:24:14.284825+03:00",
+          "filename": "20241212_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 86,
+          "create_dt": "2025-02-22T02:24:14.556001+03:00",
+          "change_dt": "2025-02-22T02:24:14.556027+03:00",
+          "filename": "20241213_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 87,
+          "create_dt": "2025-02-22T02:24:14.833347+03:00",
+          "change_dt": "2025-02-22T02:24:14.833374+03:00",
+          "filename": "20241214_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 88,
+          "create_dt": "2025-02-22T02:24:15.111498+03:00",
+          "change_dt": "2025-02-22T02:24:15.111523+03:00",
+          "filename": "20241215_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 89,
+          "create_dt": "2025-02-22T02:24:15.507731+03:00",
+          "change_dt": "2025-02-22T02:24:15.507757+03:00",
+          "filename": "20241216_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 90,
+          "create_dt": "2025-02-22T02:24:15.796850+03:00",
+          "change_dt": "2025-02-22T02:24:15.796876+03:00",
+          "filename": "20241217_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 91,
+          "create_dt": "2025-02-22T02:24:16.097803+03:00",
+          "change_dt": "2025-02-22T02:24:16.097829+03:00",
+          "filename": "20241218_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 92,
+          "create_dt": "2025-02-22T02:24:16.374471+03:00",
+          "change_dt": "2025-02-22T02:24:16.374498+03:00",
+          "filename": "20241219_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 93,
+          "create_dt": "2025-02-22T02:24:16.754935+03:00",
+          "change_dt": "2025-02-22T02:24:16.754960+03:00",
+          "filename": "20241220_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 94,
+          "create_dt": "2025-02-22T02:24:17.049698+03:00",
+          "change_dt": "2025-02-22T02:24:17.049726+03:00",
+          "filename": "20241221_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 95,
+          "create_dt": "2025-02-22T02:24:17.338862+03:00",
+          "change_dt": "2025-02-22T02:24:17.338888+03:00",
+          "filename": "20241222_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 96,
+          "create_dt": "2025-02-22T02:24:17.618940+03:00",
+          "change_dt": "2025-02-22T02:24:17.618965+03:00",
+          "filename": "20241223_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 97,
+          "create_dt": "2025-02-22T02:24:18.006205+03:00",
+          "change_dt": "2025-02-22T02:24:18.006232+03:00",
+          "filename": "20241224_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 98,
+          "create_dt": "2025-02-22T02:24:18.287252+03:00",
+          "change_dt": "2025-02-22T02:24:18.287281+03:00",
+          "filename": "20241225_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 99,
+          "create_dt": "2025-02-22T02:24:18.560350+03:00",
+          "change_dt": "2025-02-22T02:24:18.560378+03:00",
+          "filename": "20241226_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      },
+      {
+          "id": 100,
+          "create_dt": "2025-02-22T02:24:18.839952+03:00",
+          "change_dt": "2025-02-22T02:24:18.839977+03:00",
+          "filename": "20241227_nomenclature_remains_expense.csv",
+          "log": null,
+          "status": "success"
+      }
+  ],
+  "page_count": 3
+}
+
 window.loadedLoadFiles = (page = 1) => {
   loadingToggle();
+  loadedRowDraw(testResult.results);
+  loadingToggle();
+  
+  /*
   return get_imported_files(page)
     .then( (response) => {
       const { page_count, results } = response.data;
@@ -21,6 +832,7 @@ window.loadedLoadFiles = (page = 1) => {
     .finally( () => {
       loadingToggle();
     })
+  */
 }
 
 function loadedRowDraw(list) {
