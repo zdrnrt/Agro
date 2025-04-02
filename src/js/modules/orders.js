@@ -1119,9 +1119,10 @@ const testResult = {
 
 window.ordersLoad = (page = 1) => {
   loadingToggle();
+  /*
   ordersRowDraw(testResult.results);
   loadingToggle();
-  /*
+  */
   return get_order_calc(page)
     .then( (response) => {
       const { page_count, results } = response.data;
@@ -1131,17 +1132,16 @@ window.ordersLoad = (page = 1) => {
     .finally( () => {
       loadingToggle();
     })
-  */
 }
 
 function ordersRowDraw(list) {
   const table = document.getElementById('ordersTable').querySelector('tbody');
   let template = '';
   for (const el of list){
-    // <td align="center"><button class="btn btn-link p-0" data-id="${el['calc_id']}" onclick="orderExport(${el['calc_id']});"><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
-    template += `
+      // <td align="center"><a href="./files/export_order_20250306_12.xlsx" class="btn btn-link p-0" data-id="${el['calc_id']}"><i class="fa fa-cloud-download-alt fa-2x"></i></a></td>
+      template += `
       <tr>
-        <td align="center"><a href="./files/export_order_20250306_12.xlsx" class="btn btn-link p-0" data-id="${el['calc_id']}"><i class="fa fa-cloud-download-alt fa-2x"></i></a></td>
+        <td align="center"><button class="btn btn-link p-0" data-id="${el['calc_id']}" onclick="orderExport(${el['calc_id']});" ${el['status'] == 'error' || el['status'] == 'new' ? 'disabled' : ''}><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
         <td>${el['calc_id']}</td>
         <td>${format(new Date(el['calc_date']), 'dd.LL.yyy')}</td>
         <td>${el['status']}</td>

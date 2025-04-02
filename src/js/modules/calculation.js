@@ -1,6 +1,6 @@
 import {post_order_calc, get_order_calc_result, get_order_calc_export, get_order_calc_id } from '../service/api'
 import {format} from 'date-fns';
-
+import {buttonToggleLoading} from '../blocks/button';
 
 (function(){
     moduleOpen('./src/html/calculation.html')
@@ -3300,7 +3300,7 @@ window.calculationFormSubmit = async (event) => {
     statusText.classList.add('d-none');
     const errorText = document.getElementById('calculationError');
     errorText.classList.add('d-none');
-
+    /*
     if (type == 'result'){
         calculationRowDraw(testResult.results)
         document.getElementById('calculationTable').classList.remove('d-none')
@@ -3317,7 +3317,7 @@ window.calculationFormSubmit = async (event) => {
     }
     buttonToggleLoading(event.submitter);
     form.classList.remove('form--loading');
-    /*
+    */
     post_order_calc(formData)
         .then( (response) => {
             console.log('post_order_calc', response);
@@ -3357,7 +3357,6 @@ window.calculationFormSubmit = async (event) => {
             form.classList.remove('form--loading');
             buttonToggleLoading(event.submitter);
         })
-    */
 }
 
 window.calculationRowDraw = (list) => {

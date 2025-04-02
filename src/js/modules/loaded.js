@@ -819,10 +819,11 @@ const testResult = {
 
 window.loadedLoadFiles = (page = 1) => {
   loadingToggle();
+  /*
   loadedRowDraw(testResult.results);
   loadingToggle();
+  */
   
-  /*
   return get_imported_files(page)
     .then( (response) => {
       const { page_count, results } = response.data;
@@ -832,7 +833,6 @@ window.loadedLoadFiles = (page = 1) => {
     .finally( () => {
       loadingToggle();
     })
-  */
 }
 
 function loadedRowDraw(list) {

@@ -7,6 +7,12 @@ export function check_auth() {
 	return axios.get('/api/check_auth/')
 }
 
+export function login(formData) {
+	return axios.postForm(
+		'/api/login/',
+		formData,
+	)
+}
 export function post_order_calc(formData) {
 	return axios.postForm(
 		'/api/order_calc/',
@@ -14,7 +20,7 @@ export function post_order_calc(formData) {
 	)
 }
 export function get_order_calc(page) {
-	return axios.get(`/api/order_calc/?page_size=30&page=${page}`)
+	return axios.get(`/api/order_calc/?ordering=-calc_date&page_size=30&page=${page}`)
 }
 
 export function get_order_calc_id(id) {
@@ -32,5 +38,5 @@ export function get_order_calc_export(id) {
 }
 
 export function get_imported_files(page) {
-	return axios.get(`/api/imported_files/?page_size=30&page=${page}`)
+	return axios.get(`/api/imported_files/?ordering=-create_dt&page_size=30&page=${page}`)
 }

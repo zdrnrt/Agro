@@ -1,4 +1,3 @@
-window.buttonToggleLoading = (elem) => {
-  // elem.toggleAttribute('disabled')
+export function buttonToggleLoading(elem) {
   elem.classList.toggle('btn--loading');
 }
