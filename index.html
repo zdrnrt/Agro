@@ -38,7 +38,7 @@
               
           </header> -->
           <nav id="nav" class="aside__nav aside-nav">
-            <button class="aside-nav__item nav-item nav-item--active d-flex justify-content-start align-items-center" onclick="tabChange(this); moduleOpen('./src/html/calculation.html');">
+            <button class="aside-nav__item nav-item d-flex justify-content-start align-items-center" onclick="tabChange(this); moduleOpen('./src/html/calculation.html');">
               <img src="/images/icons/table.svg" class="nav-item__icon">
               <div class="nav-item__title">Расчет заказа</div>
             </button>
@@ -75,12 +75,12 @@
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-  <div class="modal modal-sm fade show" id="userModal" tabindex="-1" aria-hidden="true" style="display: block;">
+  <div class="modal modal-sm fade" id="userModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title">Авторизация</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
   
         <form id="userForm" class="form">

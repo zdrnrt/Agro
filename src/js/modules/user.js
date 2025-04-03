@@ -1,20 +1,37 @@
-import { login } from "../service/api";
+import { login, get_check_auth, logout } from "../service/api";
 import { buttonToggleLoading } from '../blocks/button'
 import { Modal } from "bootstrap";
+import { loadingToggle } from '../blocks/loading';
 
 export function initLogin(){
-  document.getElementById('userForm').addEventListener('submit', loginSubmit)
-  document.getElementById('userLogout').addEventListener('click', logout)
-  console.log(Modal.getInstance(document.getElementById('userModal')));
-  const userModal = new Modal(document.getElementById('userModal'));
-  userModal.show();
-  console.log(userModal)
-
+  document.getElementById('userForm').addEventListener('submit', uesrSubmit)
+  document.getElementById('userLogout').addEventListener('click', userLogout)
+  userCheck();
 }
 
-// userName
+// fICYtiaGeOpE
 
-function loginSubmit(event){
+function userCheck(){
+  loadingToggle();
+  get_check_auth()
+    .then((response) => {
+      if (response.status == 200){
+        setLogin(response.data.result);
+        return
+      }
+      Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+      console.log('get_check_auth', response);
+    })
+    .catch((error) => {
+      Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+      console.error('userCheck', error);
+    })
+    .finally(() => {
+      loadingToggle();
+    })
+}
+
+function uesrSubmit(event){
   event.preventDefault();
   buttonToggleLoading(event.submitter);
   const form = event.target;
@@ -29,22 +46,41 @@ function loginSubmit(event){
         errorText.textContent = response.data.error || 'Ошибка авторизации, проверьте логин и пароль'
         return 
       }
-      document.getElementById('user').classList.remove('d-none');
-      document.getElementById('userName').textContent = response.data.result
-      Modal.getInstance(document.getElementById('userModal')).hide();
+      form.reset();
+      setLogin(response.data.result);
+      Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
+      // Modal.getInstance(document.getElementById('userModal')).hide();
       console.log(Modal.getInstance(document.getElementById('userModal')));
     })
-    .catch( (error) => {
-      console.log('loginSubmit', error)
+    .catch((error) => {
+      console.log('userSubmit', error)
       errorText.classList.remove('d-none');
       errorText.textContent = 'Ошибка авторизации, проверьте логин и пароль'
     })
-    .finally( () => {
+    .finally(() => {
         form.classList.remove('form--loading');
         buttonToggleLoading(event.submitter);
     })
 }
 
-function logout() {
-  console.log('logout')
+function setLogin(name){
+  document.getElementById('user').classList.remove('d-none');
+  document.getElementById('userName').textContent = name;
+}
+
+function userLogout() {
+  loadingToggle();
+  logout()
+    .then((response) => {
+      if (response.status == 200){
+        document.getElementById('user').classList.add('d-none');
+        Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+      }
+    })
+    .catch((error) => {
+      console.error('userLogout', error)
+    })
+    .finally(() => {
+      loadingToggle();
+    })
 }

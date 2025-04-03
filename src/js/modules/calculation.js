@@ -1,10 +1,15 @@
 import {post_order_calc, get_order_calc_result, get_order_calc_export, get_order_calc_id } from '../service/api'
 import {format} from 'date-fns';
 import {buttonToggleLoading} from '../blocks/button';
+import {moduleOpen} from '../service/tools'
 
-(function(){
+export function initCalculation(){
     moduleOpen('./src/html/calculation.html')
-})()
+        .then(() => {
+            document.querySelector('[name="calc_date"]').valueAsDate = new Date();
+            document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
+        });
+}
 
 const testResult = {
     "count": 182,
@@ -3289,7 +3294,7 @@ const testResult = {
     "page_count": 19
 }
 
-window.calculationFormSubmit = async (event) => {
+function calculationFormSubmit(event) {
     event.preventDefault();
     buttonToggleLoading(event.submitter);
     const type = event.submitter.dataset.type;
@@ -3320,8 +3325,6 @@ window.calculationFormSubmit = async (event) => {
     */
     post_order_calc(formData)
         .then( (response) => {
-            console.log('post_order_calc', response);
-            // calculationRowDraw(response.data);
             return response.data
         })
         .then( (data) => {
@@ -3359,7 +3362,7 @@ window.calculationFormSubmit = async (event) => {
         })
 }
 
-window.calculationRowDraw = (list) => {
+function calculationRowDraw(list) {
     const table = document.getElementById('calculationTable').querySelector('tbody');
     table.innerHTML = '';
     let template = '';

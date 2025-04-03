@@ -1,6 +1,7 @@
 import {get_order_calc, get_order_calc_export} from '../service/api';
 import {downloadFile} from '../service/tools'
 import {format} from 'date-fns';
+import { loadingToggle } from '../blocks/loading';
 
 window.orderOpen = async () => {
   loadingToggle();

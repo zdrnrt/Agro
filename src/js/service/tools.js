@@ -13,7 +13,7 @@ export function downloadFile(response) {
   link.remove();
 }
 
-window.moduleOpen = function(path) {
+export function moduleOpen(path) {
   return fetch(path)
       .then(response => {
           if (!response.ok) {
