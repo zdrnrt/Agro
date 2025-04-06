@@ -1,4 +1,4 @@
-.btn{
+.btn {
   --bs-btn-padding-x: 1.2rem;
   --bs-btn-padding-y: 0.6rem;
   --bs-btn-line-height: 1.6;
@@ -10,13 +10,13 @@
   --bs-btn-disabled-bg: #{$cl-grey-middle};
   --bs-btn-disabled-border-color: #{$cl-grey-middle};
   --bs-btn-disabled-opacity: 1;
-  .spinner-border{
+  .spinner-border {
     display: none;
     visibility: hidden;
   }
-  &--loading{
+  &--loading {
     pointer-events: none;
-    .spinner-border{
+    .spinner-border {
       display: inline-block;
       visibility: visible;
     }
@@ -25,7 +25,7 @@
     box-shadow: none;
   }
 }
-.btn-primary{
+.btn-primary {
   --bs-btn-bg: #{$cl-purple};
   --bs-btn-border-color: #{$cl-purple};
   --bs-btn-hover-bg: #{$cl-purple-bright};
@@ -37,7 +37,7 @@
   --bs-btn-disabled-bg: #{$cl-grey-middle};
   --bs-btn-disabled-border-color: #{$cl-grey-middle};
 }
-.btn-outline-primary{
+.btn-outline-primary {
   --bs-btn-color: #{$cl-black};
   --bs-btn-border-color: #{$cl-purple};
   --bs-btn-hover-color: #{$cl-black};
@@ -51,11 +51,11 @@
   --bs-btn-disabled-color: #{$cl-grey};
   --bs-btn-disabled-bg: #{$cl-grey-middle};
   --bs-btn-disabled-border-color: #{$cl-grey-middle};
-  &:active{
+  &:active {
     box-shadow: none;
   }
 }
-.btn-outline-secondary{
+.btn-outline-secondary {
   --bs-btn-color: #{$cl-black};
   --bs-btn-border-color: #{$cl-purple-light};
   --bs-btn-hover-color: #{$cl-black};
@@ -69,11 +69,11 @@
   --bs-btn-disabled-color: #{$cl-grey};
   --bs-btn-disabled-bg: #{$cl-grey-middle};
   --bs-btn-disabled-border-color: #{$cl-grey-middle};
-  &:active{
+  &:active {
     box-shadow: none;
   }
 }
-.btn-link{
+.btn-link {
   --bs-btn-border-color: transparent;
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: transparent;

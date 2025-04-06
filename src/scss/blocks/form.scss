@@ -1,40 +1,40 @@
-.form{
-  &--loading{
+.form {
+  &--loading {
     pointer-events: none;
   }
 }
-.form-select{
-  padding: .8rem 2.25rem .8rem 1.2rem;
+.form-select {
+  padding: 0.8rem 2.25rem 0.8rem 1.2rem;
   font-size: 1.2rem;
   cursor: pointer;
-  &:hover{
+  &:hover {
     // color: $cl-grey;
   }
-  &:focus{
+  &:focus {
     border-color: $cl-purple-light;
-    box-shadow: 0 0 0 .25rem rgba($cl-purple-light,.25);
+    box-shadow: 0 0 0 0.25rem rgba($cl-purple-light, 0.25);
   }
 }
-.form-control{
-  padding: .8rem 1.2rem;
+.form-control {
+  padding: 0.8rem 1.2rem;
   font-size: 1.2rem;
-  &:focus{
+  &:focus {
     border-color: $cl-purple-light;
-    box-shadow: 0 0 0 .25rem rgba($cl-purple-light,.25);
+    box-shadow: 0 0 0 0.25rem rgba($cl-purple-light, 0.25);
   }
-  &--value:disabled{
+  &--value:disabled {
     display: none;
   }
 }
-.form-check-input{
-  &:checked{
+.form-check-input {
+  &:checked {
     background-color: $cl-purple;
     border-color: $cl-purple;
   }
-  &:focus{
-    box-shadow: 0 0 0 .25rem rgba($cl-purple-light,.25);
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($cl-purple-light, 0.25);
   }
-  &:disabled{
+  &:disabled {
     background-color: $cl-border;
     border-color: $cl-border;
   }

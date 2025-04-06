@@ -1,23 +1,23 @@
-:root{
+:root {
   --bs-table-border-color: #{$cl-table-border};
 }
-.table-container{
+.table-container {
   width: 100%;
   display: block;
   overflow-x: auto;
   border-radius: $border-radius;
   border: var(--bs-border-width) solid var(--bs-table-border-color);
 }
-.table{
+.table {
   --bs-table-color: #{$cl-black};
   margin-bottom: 0;
-  &--fixed-head{
-    thead{
+  &--fixed-head {
+    thead {
       position: fixed;
       top: 0;
     }
   }
-  &--fixed-left{
+  &--fixed-left {
     thead tr th:first-child,
     tbody tr td:first-child {
       position: sticky;
@@ -25,7 +25,7 @@
     }
   }
   thead {
-    tr:first-child{
+    tr:first-child {
       border-top: none;
       th {
         border-top: none;
@@ -33,20 +33,20 @@
     }
   }
   tbody {
-    tr:last-child{
+    tr:last-child {
       border: none;
-      td{
+      td {
         border-bottom: none;
       }
     }
   }
-  th{
+  th {
     background-color: $cl-table-bg;
     font-weight: 500;
     vertical-align: baseline;
   }
-  td, 
-  th{
+  td,
+  th {
     vertical-align: middle;
     padding: 0.4rem 1.2rem;
     border: var(--bs-border-width) solid var(--bs-table-border-color);
@@ -54,15 +54,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  td{
-
+  td {
   }
   th:first-child,
-  td:first-child{
+  td:first-child {
     border-left: none;
   }
   th:last-child,
-  td:last-child{
+  td:last-child {
     border-right: none;
   }
 }

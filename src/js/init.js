@@ -1,7 +1,7 @@
-import {initLogin} from './modules/user'
-import {initCalculation} from './modules/calculation'
+import { initLogin } from './modules/user';
+import { initCalculation } from './modules/calculation';
 
-(function(){
+(function () {
   initLogin();
   // initCalculation();
-})()
+})();

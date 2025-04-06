@@ -18,4 +18,4 @@ import './modules/calculation';
 import './modules/orders';
 import './modules/loaded';
 
-import './init.js'
+import './init.js';

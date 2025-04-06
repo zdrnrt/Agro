@@ -1,37 +1,37 @@
-import { login, get_check_auth, logout } from "../service/api";
-import { buttonToggleLoading } from '../blocks/button'
-import { Modal } from "bootstrap";
+import { login, get_check_auth, logout } from '../service/api';
+import { buttonToggleLoading } from '../blocks/button';
+import { Modal } from 'bootstrap';
 import { loadingToggle } from '../blocks/loading';
 
-export function initLogin(){
-  document.getElementById('userForm').addEventListener('submit', uesrSubmit)
-  document.getElementById('userLogout').addEventListener('click', userLogout)
-  userCheck();
+export function initLogin() {
+  document.getElementById('userForm').addEventListener('submit', uesrSubmit);
+  document.getElementById('userLogout').addEventListener('click', userLogout);
+  // userCheck();
 }
 
 // fICYtiaGeOpE
 
-function userCheck(){
-  loadingToggle();
+function userCheck() {
+  // loadingToggle();
   get_check_auth()
     .then((response) => {
-      if (response.status == 200){
+      if (response.status == 200) {
         setLogin(response.data.result);
-        return
+        return;
       }
       Modal.getOrCreateInstance(document.getElementById('userModal')).show();
-      console.log('get_check_auth', response);
+      console.log('userCheck response', response);
     })
     .catch((error) => {
       Modal.getOrCreateInstance(document.getElementById('userModal')).show();
-      console.error('userCheck', error);
+      console.error('userCheck error', error);
     })
     .finally(() => {
-      loadingToggle();
-    })
+      // loadingToggle();
+    });
 }
 
-function uesrSubmit(event){
+function uesrSubmit(event) {
   event.preventDefault();
   buttonToggleLoading(event.submitter);
   const form = event.target;
@@ -41,29 +41,27 @@ function uesrSubmit(event){
   errorText.classList.add('d-none');
   login(formData)
     .then((response) => {
-      console.log(response);
-      if (response.status != 200){
-        errorText.textContent = response.data.error || 'Ошибка авторизации, проверьте логин и пароль'
-        return 
+      console.log('uesrSubmit response', response);
+      if (response.status != 200) {
+        errorText.textContent = response.data.error || 'Ошибка авторизации, проверьте логин и пароль';
+        return;
       }
       form.reset();
       setLogin(response.data.result);
       Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
-      // Modal.getInstance(document.getElementById('userModal')).hide();
-      console.log(Modal.getInstance(document.getElementById('userModal')));
     })
     .catch((error) => {
-      console.log('userSubmit', error)
+      console.log('userSubmit error', error);
       errorText.classList.remove('d-none');
-      errorText.textContent = 'Ошибка авторизации, проверьте логин и пароль'
+      errorText.textContent = 'Ошибка авторизации, проверьте логин и пароль';
     })
     .finally(() => {
-        form.classList.remove('form--loading');
-        buttonToggleLoading(event.submitter);
-    })
+      form.classList.remove('form--loading');
+      buttonToggleLoading(event.submitter);
+    });
 }
 
-function setLogin(name){
+function setLogin(name) {
   document.getElementById('user').classList.remove('d-none');
   document.getElementById('userName').textContent = name;
 }
@@ -72,15 +70,15 @@ function userLogout() {
   loadingToggle();
   logout()
     .then((response) => {
-      if (response.status == 200){
+      if (response.status == 200) {
         document.getElementById('user').classList.add('d-none');
         Modal.getOrCreateInstance(document.getElementById('userModal')).show();
       }
     })
     .catch((error) => {
-      console.error('userLogout', error)
+      console.error('userLogout error', error);
     })
     .finally(() => {
       loadingToggle();
-    })
+    });
 }

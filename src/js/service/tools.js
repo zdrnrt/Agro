@@ -1,6 +1,5 @@
 export function downloadFile(response) {
-
-  const {headers, data} = response;
+  const { headers, data } = response;
 
   const name = headers['content-disposition'].split('; ')[1].replaceAll('"', '').split('=')[1];
 
@@ -15,16 +14,16 @@ export function downloadFile(response) {
 
 export function moduleOpen(path) {
   return fetch(path)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Реакция сети' + response.statusText);
-          }
-          return response.text(); 
-      })
-      .then(html => {
-          document.getElementById('content').innerHTML = html;
-      })
-      .catch(error => {
-          console.error('Возникла проблема с операцией выборки:', error);
-      });
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Реакция сети' + response.statusText);
+      }
+      return response.text();
+    })
+    .then((html) => {
+      document.getElementById('content').innerHTML = html;
+    })
+    .catch((error) => {
+      console.error('Возникла проблема с операцией выборки:', error);
+    });
 }

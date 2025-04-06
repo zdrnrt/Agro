@@ -1,27 +1,37 @@
 <div class="page__content page-content data-page">
-    <div class="table-container mb-3">
-      <table id="loadedTable" class="table">
-        <colgroup>
-          <col width="5%">
-          <col width="50%">
-          <col width="15%">
-          <col width="15%">
-          <col width="15%">
-        </colgroup>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>Название файла</th>
-              <th>Статус загрузки</th>
-              <th>Дата создания</th>
-              <th>Дата изменения</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-      </table>
+  <div class="table-container mb-3">
+    <table
+      id="loadedTable"
+      class="table"
+    >
+      <colgroup>
+        <col width="5%" />
+        <col width="50%" />
+        <col width="15%" />
+        <col width="15%" />
+        <col width="15%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Название файла</th>
+          <th>Статус загрузки</th>
+          <th>Дата создания</th>
+          <th>Дата изменения</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
   <div>
-    <button id="loadedMore" class="btn btn-outline-primary" data-count="" data-page="2" onclick="loadedLoadFiles(this.dataset.page);">Загрузить еще</button>
+    <button
+      id="loadedMore"
+      class="btn btn-outline-primary"
+      data-count=""
+      data-page="2"
+      onclick="loadedLoadFiles(this.dataset.page);"
+    >
+      Загрузить еще
+    </button>
   </div>
 </div>

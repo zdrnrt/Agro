@@ -1,25 +1,24 @@
 $main-font: 'Inter', sans-serif;
 
-$cl-purple: #474BAB;
-$cl-purple-light: #CACCF7;
-$cl-grey-light: #FAFAFA;
-$cl-grey-middle: #EAEAF0;
+$cl-purple: #474bab;
+$cl-purple-light: #caccf7;
+$cl-grey-light: #fafafa;
+$cl-grey-middle: #eaeaf0;
 $cl-grey: #c4c5d7;
-$cl-black: #2C2D31;
+$cl-black: #2c2d31;
 $cl-purple-bright: #3337a2;
 $cl-table-bg: #f1f2ff;
-$cl-table-border: #E7E9EC;
+$cl-table-border: #e7e9ec;
 $cl-white: #fff;
 
-
-$cl-btn-hover: #CACCF7;
+$cl-btn-hover: #caccf7;
 $cl-border: $cl-grey-middle;
 
 $border-radius: 0.8rem;
 
 $transition-time: 0.2s;
 
-:root{
+:root {
   --bs-body-font-family: #{$main-font};
   --bs-body-font-size: 1.2rem;
   --bs-body-line-height: 1.2;
