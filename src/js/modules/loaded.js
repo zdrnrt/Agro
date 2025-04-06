@@ -3,6 +3,10 @@ import { format } from 'date-fns';
 import { loadingToggle } from '../blocks/loading';
 import { moduleOpen } from '../service/tools';
 
+export function initLoaded() {
+  document.getElementById('nav-loaded').addEventListener('click', loadedOpen);
+}
+
 export async function loadedOpen() {
   loadingToggle();
   await moduleOpen('./src/html/loaded.html').then(() => {
@@ -818,7 +822,7 @@ const testResult = {
   page_count: 3,
 };
 
-window.loadedLoadFiles = (page = 1) => {
+function loadedLoadFiles(page = 1) {
   loadingToggle();
   /*
   loadedRowDraw(testResult.results);
@@ -837,7 +841,7 @@ window.loadedLoadFiles = (page = 1) => {
     .finally(() => {
       loadingToggle();
     });
-};
+}
 
 function loadedRowDraw(list) {
   const table = document.getElementById('loadedTable').querySelector('tbody');

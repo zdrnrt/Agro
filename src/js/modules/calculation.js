@@ -2,12 +2,15 @@ import { post_order_calc, get_order_calc_result, get_order_calc_export, get_orde
 import { format } from 'date-fns';
 import { buttonToggleLoading } from '../blocks/button';
 import { moduleOpen } from '../service/tools';
+import { userCheck } from './user';
 
 export function initCalculation() {
-  moduleOpen('./src/html/calculation.html').then(() => {
-    document.querySelector('[name="calc_date"]').valueAsDate = new Date();
-    document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
-  });
+  document.getElementById('nav-calculation').addEventListener('click', claclulationOpen);
+  claclulationOpen();
+  // moduleOpen('./src/html/calculation.html').then(() => {
+  //   document.querySelector('[name="calc_date"]').valueAsDate = new Date();
+  //   document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
+  // });
 }
 
 const testResult = {
@@ -3293,7 +3296,18 @@ const testResult = {
   page_count: 19,
 };
 
+function claclulationOpen() {
+  moduleOpen('./src/html/calculation.html').then(() => {
+    document.querySelector('[name="calc_date"]').valueAsDate = new Date();
+    document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
+  });
+}
+
 function calculationFormSubmit(event) {
+  if (!userCheck()) {
+    return;
+  }
+
   event.preventDefault();
   buttonToggleLoading(event.submitter);
   const type = event.submitter.dataset.type;

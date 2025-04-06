@@ -2,16 +2,23 @@ import { get_order_calc, get_order_calc_export } from '../service/api';
 import { downloadFile } from '../service/tools';
 import { format } from 'date-fns';
 import { loadingToggle } from '../blocks/loading';
+import { moduleOpen } from '../service/tools';
 
-window.orderOpen = async () => {
+export function initOrders() {
+  document.getElementById('nav-orders').addEventListener('click', ordersOpen);
+}
+
+async function ordersOpen() {
   loadingToggle();
   await moduleOpen('./src/html/orders.html').then(() => {
     ordersLoad();
     loadingToggle();
   });
-};
+}
 
-window.orderExport = (id) => {
+function ordersExport(event) {
+  console.log(event);
+  const id = event.target.closest('[data-id]').dataset.id;
   get_order_calc_export(id)
     .then((response) => {
       downloadFile(response);
@@ -20,7 +27,7 @@ window.orderExport = (id) => {
       alert(`Ошибка скачивания файла с id: ${id}`);
       console.error(error);
     });
-};
+}
 
 const testResult = {
   count: 68,
@@ -1144,7 +1151,7 @@ function ordersRowDraw(list) {
     // <td align="center"><a href="./files/export_order_20250306_12.xlsx" class="btn btn-link p-0" data-id="${el['calc_id']}"><i class="fa fa-cloud-download-alt fa-2x"></i></a></td>
     template += `
       <tr>
-        <td align="center"><button class="btn btn-link p-0" data-id="${el['calc_id']}" onclick="orderExport(${el['calc_id']});" ${el['status'] == 'error' || el['status'] == 'new' ? 'disabled' : ''}><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+        <td align="center"><button class="btn btn-link p-0" data-id="${el['calc_id']}" _onclick="ordersExport(${el['calc_id']});" ${el['status'] == 'error' || el['status'] == 'new' ? 'disabled' : ''}><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
         <td>${el['calc_id']}</td>
         <td>${format(new Date(el['calc_date']), 'dd.LL.yyy')}</td>
         <td>${el['status']}</td>
@@ -1163,6 +1170,9 @@ function ordersRowDraw(list) {
     `;
   }
   table.insertAdjacentHTML('beforeend', template);
+  for (const btn of table.querySelectorAll('[data-id].btn-link')) {
+    btn.addEventListener('click', ordersExport);
+  }
 }
 
 function ordersUpdateMore(request) {

@@ -1,13 +1,13 @@
-window.asideToogle = function () {
-  const aside = document.getElementById('aside');
-  const main = document.getElementById('content');
-  aside.classList.toggle('aside--hidden');
-  aside.classList.toggle('col-3');
-  main.classList.toggle('col-9');
-  main.classList.toggle('flex-grow-1');
-};
+export function initAside() {
+  const navList = document.querySelectorAll('#nav .nav-item');
 
-window.tabChange = function (elem) {
+  for (const navItem of navList) {
+    navItem.addEventListener('click', tabChange);
+  }
+}
+
+function tabChange(event) {
+  const elem = event.target.closest('.nav-item');
   const nav = document.getElementById('nav');
   for (const tab of nav.querySelectorAll('.nav-item--active')) {
     tab.classList.remove('nav-item--active');
@@ -16,4 +16,4 @@ window.tabChange = function (elem) {
   if (elem.closest('.aside-nav__item--collapse')) {
     elem.closest('.aside-nav__item--collapse').previousElementSibling.classList.add('nav-item--active');
   }
-};
+}

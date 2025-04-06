@@ -1,7 +1,13 @@
-import { initLogin } from './modules/user';
+import { initUser } from './modules/user';
+import { initAside } from './blocks/aside';
 import { initCalculation } from './modules/calculation';
+import { initLoaded } from './modules/loaded';
+import { initOrders } from './modules/orders';
 
 (function () {
-  initLogin();
-  // initCalculation();
+  initUser();
+  initAside();
+  initCalculation();
+  initLoaded();
+  initOrders();
 })();

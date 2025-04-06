@@ -3,28 +3,29 @@ import { buttonToggleLoading } from '../blocks/button';
 import { Modal } from 'bootstrap';
 import { loadingToggle } from '../blocks/loading';
 
-export function initLogin() {
+export function initUser() {
   document.getElementById('userForm').addEventListener('submit', uesrSubmit);
   document.getElementById('userLogout').addEventListener('click', userLogout);
-  // userCheck();
+  userCheck();
 }
 
 // fICYtiaGeOpE
 
-function userCheck() {
+export function userCheck() {
   // loadingToggle();
   get_check_auth()
     .then((response) => {
       if (response.status == 200) {
         setLogin(response.data.result);
-        return;
+        return true;
       }
       Modal.getOrCreateInstance(document.getElementById('userModal')).show();
-      console.log('userCheck response', response);
+      return false;
     })
     .catch((error) => {
       Modal.getOrCreateInstance(document.getElementById('userModal')).show();
       console.error('userCheck error', error);
+      return false;
     })
     .finally(() => {
       // loadingToggle();
