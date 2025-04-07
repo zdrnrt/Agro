@@ -18,6 +18,7 @@ async function ordersOpen() {
 }
 
 function ordersExport(event) {
+  /*
   const id = event.target.closest('[data-id]').dataset.id;
   get_order_calc_export(id)
     .then((response) => {
@@ -27,6 +28,7 @@ function ordersExport(event) {
       alert(`Ошибка скачивания файла с id: ${id}`);
       console.error('ordersExport', error);
     });
+    */
 }
 
 const testResult = {
@@ -1125,15 +1127,16 @@ const testResult = {
 };
 
 window.ordersLoad = (page = 1) => {
+  /*
   if (!userCheck()) {
     return;
   }
 
+  */
   loadingToggle();
-  /*
   ordersRowDraw(testResult.results);
   loadingToggle();
-  */
+/*
   return get_order_calc(page)
     .then((response) => {
       const { page_count, results } = response.data;
@@ -1146,16 +1149,17 @@ window.ordersLoad = (page = 1) => {
     .finally(() => {
       loadingToggle();
     });
+*/
 };
 
 function ordersRowDraw(list) {
   const table = document.getElementById('ordersTable').querySelector('tbody');
   let template = '';
   for (const el of list) {
-    // <td align="center"><a href="./files/export_order_20250306_12.xlsx" class="btn btn-link p-0" data-id="${el['calc_id']}"><i class="fa fa-cloud-download-alt fa-2x"></i></a></td>
+    // <td align="center"><button class="btn btn-link p-0" data-id="${el['calc_id']}" ${el['status'] != 'complete' ? 'disabled' : ''}>dddd<i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
     template += `
-      <tr>
-        <td align="center"><button class="btn btn-link p-0" data-id="${el['calc_id']}" ${el['status'] != 'complete' ? 'disabled' : ''}><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
+    <tr>
+    <td align="center"><a href="./files/export_order_20250306_12.xlsx" class="btn btn-link p-0" data-id="${el['calc_id']}"><i class="fa fa-cloud-download-alt fa-2x"></i></a></td>
         <td>${el['calc_id']}</td>
         <td>${format(new Date(el['calc_date']), 'dd.LL.yyy')}</td>
         <td>${el['status']}</td>

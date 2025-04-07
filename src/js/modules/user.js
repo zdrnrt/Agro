@@ -4,7 +4,7 @@ import { Modal } from 'bootstrap';
 import { loadingToggle } from '../blocks/loading';
 
 export function initUser() {
-  document.getElementById('userForm').addEventListener('submit', uesrSubmit);
+  document.getElementById('userForm').addEventListener('submit', userSubmit);
   document.getElementById('userLogout').addEventListener('click', userLogout);
   // userCheck();
 }
@@ -12,6 +12,12 @@ export function initUser() {
 // fICYtiaGeOpE
 
 export function userCheck() {
+  const cookie = document.cookie.split('; ');
+  if (cookie.find((el) => el.includes('csrftoken'))) {
+    return true;
+  }
+  Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+  /*
   const cookie = document.cookie.split('; ');
   if (cookie.find((el) => el.includes('csrftoken'))) {
     return true;
@@ -31,11 +37,16 @@ export function userCheck() {
       console.error('userCheck', error);
       return false;
     });
+  */
 }
 
-function uesrSubmit(event) {
+function userSubmit(event) {
   event.preventDefault();
   buttonToggleLoading(event.submitter);
+  document.cookie = 'csrftoken=test';
+    setLogin('test account');
+    Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
+  /*
   const form = event.target;
   form.classList.add('form--loading');
   const formData = new FormData(form);
@@ -43,7 +54,7 @@ function uesrSubmit(event) {
   errorText.classList.add('d-none');
   login(formData)
     .then((response) => {
-      console.log('uesrSubmit response', response);
+      console.log('userSubmit response', response);
       if (response.status != 200) {
         errorText.textContent = response.data.error || 'Ошибка авторизации, проверьте логин и пароль';
         return;
@@ -61,6 +72,7 @@ function uesrSubmit(event) {
       form.classList.remove('form--loading');
       buttonToggleLoading(event.submitter);
     });
+  */
 }
 
 function setLogin(name) {

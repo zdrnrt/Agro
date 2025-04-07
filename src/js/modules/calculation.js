@@ -3307,13 +3307,25 @@ function claclulationOpen() {
 }
 
 function calculationCheck() {
+  document.getElementById('calculationLoading').classList.remove('d-none');
+  calculationStatus();
+  /*
   if (!!localStorage.getItem('calculation')) {
     calculationStatus(localStorage.getItem('calculation'));
     document.getElementById('calculationLoading').classList.remove('d-none');
   }
+  */
 }
 
 function calculationStatus(id) {
+  setTimeout( () => {
+    if (document.getElementById('calculationLoading')) {
+      document.getElementById('calculationInProgress').classList.add('d-none');
+      document.getElementById('calculationComplete').classList.remove('d-none');
+      document.getElementById('calculationComplete').dataset.id = response.data.calc_id;
+    }
+  }, 4000)
+  /*
   clearTimeout(window.calculationTimer);
   get_order_calc_id(id)
     .then((response) => {
@@ -3334,7 +3346,7 @@ function calculationStatus(id) {
       console.error('calculationStatus', error);
       localStorage.removeItem('calculation');
     });
-
+  */
   // if (!!localStorage.getItem('calculation')){
   //   document.getElementById('calculationLoading').classList.remove('d-none');
   // }
@@ -3354,8 +3366,11 @@ function calculationFormSubmit(event) {
   const formData = new FormData(form);
   // const statusText = document.getElementById('calculationStatus');
   // statusText.classList.add('d-none');
-  // const errorText = document.getElementById('calculationError');
-  // errorText.classList.add('d-none');
+  const errorText = document.getElementById('calculationError');
+  errorText.classList.add('d-none');
+  calculationCheck();
+  /*
+  localStorage.setItem('calculation', data.calc_id);
   post_order_calc(formData)
     .then((response) => {
       return response.data;
@@ -3365,26 +3380,35 @@ function calculationFormSubmit(event) {
       calculationCheck();
       console.log('data', data);
     })
-    .catch((err) => {
-      console.log('post_order_calc', err);
+    .catch((error) => {
+      console.log('post_order_calc', error);
+      if (error.status == 403){
+        errorText.textContent = 'Ошибка авторизации, попробуйте авторизоваться снова'
+      }
       errorText.classList.remove('d-none');
     })
     .finally(() => {
       form.classList.remove('form--loading');
       buttonToggleLoading(event.submitter);
     });
+  */
 }
 
 function calculationResult(event) {
   const id = localStorage.getItem('calculation');
   const type = event.target.dataset.type;
   if (type == 'result') {
+    calculationRowDraw(testResult.results);
+    document.getElementById('calculationTable').classList.remove('d-none');
+    document.getElementById('calculationLoading').classList.add('d-none');
+    /*
     get_order_calc_result(id).then((response) => {
       console.log('calculationResult get_order_calc_result', response);
       calculationRowDraw(response.data.results);
       document.getElementById('calculationTable').classList.remove('d-none');
       document.getElementById('calculationLoading').classList.add('d-none');
     });
+    */
   }
   if (type == 'export') {
     get_order_calc_export(id)

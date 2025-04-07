@@ -824,16 +824,16 @@ const testResult = {
 };
 
 function loadedLoadFiles(page = 1) {
+  /*
   if (!userCheck()) {
     return;
   }
-
-  loadingToggle();
-  /*
-  loadedRowDraw(testResult.results);
-  loadingToggle();
   */
 
+  loadingToggle();
+  loadedRowDraw(testResult.results);
+  loadingToggle();
+/*
   return get_imported_files(page)
     .then((response) => {
       const { page_count, results } = response.data;
@@ -846,6 +846,7 @@ function loadedLoadFiles(page = 1) {
     .finally(() => {
       loadingToggle();
     });
+    */
 }
 
 function loadedRowDraw(list) {
