@@ -1,6 +1,9 @@
 <div class="page__content page-content data-page">
   <div class="table-container mb-3">
-    <table id="ordersTable" class="table orders-table">
+    <table
+      id="ordersTable"
+      class="table orders-table"
+    >
       <thead>
         <tr>
           <th></th>
@@ -17,7 +20,7 @@
           <th>Частота поставки, дней</th>
           <th>Коэф-т МП, %</th>
           <th>Коэф-т МинЗаказа, %</th>
-          <th style="max-width: 120px;">Логи</th>
+          <th style="max-width: 120px">Логи</th>
           <!-- <th>Minimum order quantity percent</th> -->
           <!-- <th>Minimum order percent</th> -->
           <!-- <th>Delivery frequency</th> -->
@@ -43,7 +46,13 @@
     </table>
   </div>
   <div>
-    <button id="ordersMore" class="btn btn-outline-primary" data-page="2"
-      onclick="ordersLoad(this.dataset.page);">Загрузить еще</button>
+    <button
+      id="ordersMore"
+      class="btn btn-outline-primary"
+      data-page="2"
+      onclick="ordersLoad(this.dataset.page);"
+    >
+      Загрузить еще
+    </button>
   </div>
 </div>
