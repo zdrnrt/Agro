@@ -6,30 +6,31 @@ import { loadingToggle } from '../blocks/loading';
 export function initUser() {
   document.getElementById('userForm').addEventListener('submit', uesrSubmit);
   document.getElementById('userLogout').addEventListener('click', userLogout);
-  userCheck();
+  // userCheck();
 }
 
 // fICYtiaGeOpE
 
 export function userCheck() {
-  // loadingToggle();
+  const cookie = document.cookie.split('; ')
+  if (cookie.find( (el) => el.includes('csrftoken') )){
+    return true;
+  }
   get_check_auth()
     .then((response) => {
       if (response.status == 200) {
         setLogin(response.data.result);
-        return true;
+        // return true
+        return false
       }
       Modal.getOrCreateInstance(document.getElementById('userModal')).show();
-      return false;
+      return false
     })
     .catch((error) => {
       Modal.getOrCreateInstance(document.getElementById('userModal')).show();
-      console.error('userCheck error', error);
+      console.error('userCheck', error);
       return false;
     })
-    .finally(() => {
-      // loadingToggle();
-    });
 }
 
 function uesrSubmit(event) {
@@ -77,7 +78,7 @@ function userLogout() {
       }
     })
     .catch((error) => {
-      console.error('userLogout error', error);
+      console.error('userLogout', error);
     })
     .finally(() => {
       loadingToggle();

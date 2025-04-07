@@ -26,7 +26,7 @@ export function get_order_calc(page) {
 }
 
 export function get_order_calc_id(id) {
-  return axios.get(`/api/order/${id}`);
+  return axios.get(`/api/order_calc/${id}`);
 }
 
 export function get_order_calc_result(id) {

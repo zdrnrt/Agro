@@ -169,24 +169,7 @@
           type="submit"
           data-type="result"
         >
-          <span
-            class="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
           Рассчитать
-        </button>
-        <button
-          class="btn btn-outline-primary d-block w-100"
-          type="submit"
-          data-type="export"
-        >
-          <span
-            class="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          Выгрузить
         </button>
         <div
           id="calculationStatus"
@@ -260,4 +243,40 @@
       <tbody></tbody>
     </table>
   </div>
+  <div
+      id="calculationLoading"
+      class="loading loading--content d-none d-flex justify-content-center align-items-center"
+    >
+    <div class="loading__content p-3">
+      <div id="calculationInProgress" _class="d-none">
+        <h2 class="mb-3 text-center">Идет расчет...</h2>
+      </div>
+      <div id="calculationComplete" _class="d-none">
+        <h2 class="mb-3 text-center">Результат расчета</h2>
+        <div class="text-center">
+          <button id="calculationResult"
+              class="w-100 mb-3 btn btn-primary"
+              type="submit"
+              data-type="result"
+            >
+              Отобразить
+            </button>
+            <button id="calculationExport"
+              class="btn btn-outline-primary d-block w-100"
+              type="submit"
+              data-type="export"
+            >
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Выгрузить
+            </button>
+        </div>
+      </div>
+        
+    </div>
+      
+    </div>
 </div>

@@ -8,8 +8,8 @@ export function initCalculation() {
   document.getElementById('nav-calculation').addEventListener('click', claclulationOpen);
   claclulationOpen();
   // moduleOpen('./src/html/calculation.html').then(() => {
-  //   document.querySelector('[name="calc_date"]').valueAsDate = new Date();
-  //   document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
+    // document.querySelector('[name="calc_date"]').valueAsDate = new Date();
+    // document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
   // });
 }
 
@@ -3300,15 +3300,55 @@ function claclulationOpen() {
   moduleOpen('./src/html/calculation.html').then(() => {
     document.querySelector('[name="calc_date"]').valueAsDate = new Date();
     document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
+    calculationCheck();
   });
 }
 
+function calculationCheck() {
+  if (!!localStorage.getItem('calculation')){
+    calculationStatus(localStorage.getItem('calculation'))
+    document.getElementById('calculationLoading').classList.remove('d-none');
+  }
+}
+
+function calculationStatus(id) {
+  clearTimeout(calculationInterval);
+  get_order_calc_id(id)
+    .then( (response) => {
+      console.log('calculationStatus get_order_calc_id', response)
+      if (response.data.status = 'complete'){
+        if (document.getElementById('calculationLoading')){
+          document.getElementById('calculationInProgress').classList.add('d-none');
+          document.getElementById('calculationComplete').classList.remove('d-none');
+          document.getElementById('calculationResult').dataset.id = response.data.calc_id;
+          document.getElementById('calculationExport').dataset.id = response.data.calc_id;
+        }
+      } else {
+        calculationInterval = setTimeout(() => {
+          calculationStatus(id);
+        }, 5000);
+      }
+      // response.data.results.calc_id
+    })
+    .catch( (error) => {
+      console.error('calculationStatus', error);
+      localStorage.removeItem('calculation')
+    });
+
+  // if (!!localStorage.getItem('calculation')){
+  //   document.getElementById('calculationLoading').classList.remove('d-none');
+  // }
+}
+
 function calculationFormSubmit(event) {
+  event.preventDefault();
+  console.log(event);
+  // clearTimeout(calculationInterval);
+
   if (!userCheck()) {
     return;
   }
 
-  event.preventDefault();
   buttonToggleLoading(event.submitter);
   const type = event.submitter.dataset.type;
   const form = event.target;
@@ -3347,11 +3387,11 @@ function calculationFormSubmit(event) {
       statusText.textContent = `Расчет создан, идет вычисление...`;
       if (type == 'result') {
         // return get_order_calc_result(1234)
-        return get_order_calc_result(data.calc_id);
+        // return get_order_calc_result(data.calc_id);
         // return get_order_calc_id(data.calc_id)
       }
       if (type == 'export') {
-        return get_order_calc_export(data.calc_id);
+        // return get_order_calc_export(data.calc_id);
         // return get_order_calc_id(data.calc_id)
       }
     })
