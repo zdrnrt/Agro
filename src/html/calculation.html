@@ -244,39 +244,45 @@
     </table>
   </div>
   <div
-      id="calculationLoading"
-      class="loading loading--content d-none d-flex justify-content-center align-items-center"
-    >
-    <div class="loading__content p-3">
-      <div id="calculationInProgress" _class="d-none">
-        <h2 class="mb-3 text-center">Идет расчет...</h2>
+    id="calculationLoading"
+    class="loading loading--content d-none d-flex justify-content-center align-items-center"
+  >
+    <div class="loading__content pt-4 pb-5 p-3">
+      <div
+        id="calculationInProgress"
+        class="d-flex align-items-center justify-content-center"
+      >
+        <h2 class="pt-5 text-center">
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Идет расчет...
+        </h2>
       </div>
-      <div id="calculationComplete" _class="d-none">
+      <div
+        id="calculationComplete"
+        class="d-none"
+      >
         <h2 class="mb-3 text-center">Результат расчета</h2>
         <div class="text-center">
-          <button id="calculationResult"
-              class="w-100 mb-3 btn btn-primary"
-              type="submit"
-              data-type="result"
-            >
-              Отобразить
-            </button>
-            <button id="calculationExport"
-              class="btn btn-outline-primary d-block w-100"
-              type="submit"
-              data-type="export"
-            >
-              <span
-                class="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
-              Выгрузить
-            </button>
+          <button
+            id="calculationResult"
+            class="w-100 mb-3 btn btn-primary"
+            data-type="result"
+          >
+            Отобразить
+          </button>
+          <button
+            id="calculationExport"
+            class="btn btn-outline-primary d-block w-100"
+            data-type="export"
+          >
+            Выгрузить
+          </button>
         </div>
       </div>
-        
     </div>
-      
-    </div>
+  </div>
 </div>

@@ -1125,11 +1125,10 @@ const testResult = {
 };
 
 window.ordersLoad = (page = 1) => {
-
   if (!userCheck()) {
     return;
   }
-  
+
   loadingToggle();
   /*
   ordersRowDraw(testResult.results);

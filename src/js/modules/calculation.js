@@ -1,15 +1,15 @@
 import { post_order_calc, get_order_calc_result, get_order_calc_export, get_order_calc_id } from '../service/api';
 import { format } from 'date-fns';
 import { buttonToggleLoading } from '../blocks/button';
-import { moduleOpen } from '../service/tools';
+import { moduleOpen, downloadFile } from '../service/tools';
 import { userCheck } from './user';
 
 export function initCalculation() {
   document.getElementById('nav-calculation').addEventListener('click', claclulationOpen);
   claclulationOpen();
   // moduleOpen('./src/html/calculation.html').then(() => {
-    // document.querySelector('[name="calc_date"]').valueAsDate = new Date();
-    // document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
+  // document.querySelector('[name="calc_date"]').valueAsDate = new Date();
+  // document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
   // });
 }
 
@@ -3300,39 +3300,39 @@ function claclulationOpen() {
   moduleOpen('./src/html/calculation.html').then(() => {
     document.querySelector('[name="calc_date"]').valueAsDate = new Date();
     document.getElementById('calculationForm').addEventListener('submit', calculationFormSubmit);
+    document.getElementById('calculationResult').addEventListener('click', calculationResult);
+    document.getElementById('calculationExport').addEventListener('click', calculationResult);
     calculationCheck();
   });
 }
 
 function calculationCheck() {
-  if (!!localStorage.getItem('calculation')){
-    calculationStatus(localStorage.getItem('calculation'))
+  if (!!localStorage.getItem('calculation')) {
+    calculationStatus(localStorage.getItem('calculation'));
     document.getElementById('calculationLoading').classList.remove('d-none');
   }
 }
 
 function calculationStatus(id) {
-  clearTimeout(calculationInterval);
+  clearTimeout(window.calculationTimer);
   get_order_calc_id(id)
-    .then( (response) => {
-      console.log('calculationStatus get_order_calc_id', response)
-      if (response.data.status = 'complete'){
-        if (document.getElementById('calculationLoading')){
+    .then((response) => {
+      if (response.data.status == 'complete' || response.data.status == 'error') {
+        if (document.getElementById('calculationLoading')) {
           document.getElementById('calculationInProgress').classList.add('d-none');
           document.getElementById('calculationComplete').classList.remove('d-none');
-          document.getElementById('calculationResult').dataset.id = response.data.calc_id;
-          document.getElementById('calculationExport').dataset.id = response.data.calc_id;
+          document.getElementById('calculationComplete').dataset.id = response.data.calc_id;
         }
       } else {
-        calculationInterval = setTimeout(() => {
+        window.calculationTimer = setTimeout(() => {
           calculationStatus(id);
         }, 5000);
       }
       // response.data.results.calc_id
     })
-    .catch( (error) => {
+    .catch((error) => {
       console.error('calculationStatus', error);
-      localStorage.removeItem('calculation')
+      localStorage.removeItem('calculation');
     });
 
   // if (!!localStorage.getItem('calculation')){
@@ -3343,76 +3343,80 @@ function calculationStatus(id) {
 function calculationFormSubmit(event) {
   event.preventDefault();
   console.log(event);
-  // clearTimeout(calculationInterval);
-
+  clearTimeout(window.calculationTimer);
   if (!userCheck()) {
     return;
   }
 
   buttonToggleLoading(event.submitter);
-  const type = event.submitter.dataset.type;
   const form = event.target;
   form.classList.add('form--loading');
   const formData = new FormData(form);
-  const statusText = document.getElementById('calculationStatus');
-  statusText.classList.add('d-none');
-  const errorText = document.getElementById('calculationError');
-  errorText.classList.add('d-none');
-  /*
-    if (type == 'result'){
-        calculationRowDraw(testResult.results)
-        document.getElementById('calculationTable').classList.remove('d-none')
-    }
-    if (type == 'export'){
-        const url = './files/export_order_20250306_12.xlsx';
-        console.log(url);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'export_order_20250306_12.xlsx');
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-    }
-    buttonToggleLoading(event.submitter);
-    form.classList.remove('form--loading');
-    */
+  // const statusText = document.getElementById('calculationStatus');
+  // statusText.classList.add('d-none');
+  // const errorText = document.getElementById('calculationError');
+  // errorText.classList.add('d-none');
   post_order_calc(formData)
     .then((response) => {
       return response.data;
     })
     .then((data) => {
-      console.log('req', data);
-      console.log('type', type);
-      statusText.classList.remove('d-none');
-      statusText.textContent = `Расчет создан, идет вычисление...`;
-      if (type == 'result') {
-        // return get_order_calc_result(1234)
-        // return get_order_calc_result(data.calc_id);
-        // return get_order_calc_id(data.calc_id)
-      }
-      if (type == 'export') {
-        // return get_order_calc_export(data.calc_id);
-        // return get_order_calc_id(data.calc_id)
-      }
-    })
-    .then((result) => {
-      console.log('result', result);
-      if (type == 'result') {
-        console.log('result', result);
-      }
-      if (type == 'export') {
-        console.log('export', result);
-      }
+      localStorage.setItem('calculation', data.calc_id);
+      calculationCheck();
+      console.log('data', data);
     })
     .catch((err) => {
       console.log('post_order_calc', err);
-      // statusText.classList.add('d-none');
       errorText.classList.remove('d-none');
     })
     .finally(() => {
       form.classList.remove('form--loading');
       buttonToggleLoading(event.submitter);
     });
+}
+
+function calculationResult(event) {
+  const id = localStorage.getItem('calculation');
+  const type = event.target.dataset.type;
+  if (type == 'result') {
+    get_order_calc_result(id).then((response) => {
+      console.log('calculationResult get_order_calc_result', response);
+      calculationRowDraw(response.data.results);
+      document.getElementById('calculationTable').classList.remove('d-none');
+      document.getElementById('calculationLoading').classList.add('d-none');
+    });
+  }
+  if (type == 'export') {
+    get_order_calc_export(id)
+      .then((response) => {
+        downloadFile(response);
+      })
+      .catch((error) => {
+        alert(`Ошибка скачивания файла с id: ${id}`);
+        console.error('ordersExport', error);
+      })
+      .finally(() => {
+        document.getElementById('calculationLoading').classList.add('d-none');
+      });
+  }
+
+  /*
+  if (type == 'result'){
+      calculationRowDraw(testResult.results)
+      document.getElementById('calculationTable').classList.remove('d-none')
+  }
+  if (type == 'export'){
+      const url = './files/export_order_20250306_12.xlsx';
+      console.log(url);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'export_order_20250306_12.xlsx');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+  }
+  */
+  localStorage.removeItem('calculation');
 }
 
 function calculationRowDraw(list) {

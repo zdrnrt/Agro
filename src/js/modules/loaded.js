@@ -2,7 +2,7 @@ import { get_imported_files } from '../service/api';
 import { format } from 'date-fns';
 import { loadingToggle } from '../blocks/loading';
 import { moduleOpen } from '../service/tools';
-import {userCheck} from '../modules/user'
+import { userCheck } from '../modules/user';
 
 export function initLoaded() {
   document.getElementById('nav-loaded').addEventListener('click', loadedOpen);
@@ -824,7 +824,6 @@ const testResult = {
 };
 
 function loadedLoadFiles(page = 1) {
-
   if (!userCheck()) {
     return;
   }
