@@ -9,19 +9,15 @@ export function initUser() {
   // userCheck();
 }
 
-// fICYtiaGeOpE
-
 export function userCheck() {
   const cookie = document.cookie.split('; ');
   if (cookie.find((el) => el.includes('csrftoken'))) {
+    setLogin();
     return true;
   }
-  Modal.getOrCreateInstance(document.getElementById('userModal')).show();
   /*
-  const cookie = document.cookie.split('; ');
-  if (cookie.find((el) => el.includes('csrftoken'))) {
-    return true;
-  }
+  Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+  */
   get_check_auth()
     .then((response) => {
       if (response.status == 200) {
@@ -37,18 +33,19 @@ export function userCheck() {
       console.error('userCheck', error);
       return false;
     });
-  */
 }
 
 function userSubmit(event) {
   event.preventDefault();
+  /*
   buttonToggleLoading(event.submitter);
   document.cookie = 'csrftoken=test';
-    setLogin('test account');
-    Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
-  /*
+  setLogin('test account');
+  Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
+  */
   const form = event.target;
   form.classList.add('form--loading');
+  buttonToggleLoading(event.submitter);
   const formData = new FormData(form);
   const errorText = document.getElementById('userFormError');
   errorText.classList.add('d-none');
@@ -60,7 +57,8 @@ function userSubmit(event) {
         return;
       }
       form.reset();
-      setLogin(response.data.result);
+      localStorage.setItem('user', response.data.result);
+      setLogin();
       Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
     })
     .catch((error) => {
@@ -72,12 +70,11 @@ function userSubmit(event) {
       form.classList.remove('form--loading');
       buttonToggleLoading(event.submitter);
     });
-  */
 }
 
-function setLogin(name) {
+function setLogin() {
   document.getElementById('user').classList.remove('d-none');
-  document.getElementById('userName').textContent = name;
+  document.getElementById('userName').textContent = localStorage.getItem('user');
 }
 
 function userLogout() {
@@ -85,6 +82,7 @@ function userLogout() {
   logout()
     .then((response) => {
       if (response.status == 200) {
+        localStorage.removeItem('user');
         document.getElementById('user').classList.add('d-none');
         Modal.getOrCreateInstance(document.getElementById('userModal')).show();
       }

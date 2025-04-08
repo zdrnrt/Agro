@@ -1,6 +1,6 @@
 <div class="page__content page-content data-page">
   <form
-    id="calculationForm"
+    id="form"
     class="mb-3 row"
   >
     <div class="col-3">
@@ -135,7 +135,7 @@
           </div>
         </div>
         <div class="row form-group mb-3">
-          <div class="col-6">Коэф-т МинЗаказа, %</div>
+          <div class="col-6">Коэф-т Мин Заказа, %</div>
           <div class="col-6">
             <input
               class="form-control"
@@ -169,16 +169,22 @@
           type="submit"
           data-type="result"
         >
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
           Рассчитать
         </button>
-        <div
-          id="calculationStatus"
-          class="mt-3 d-none"
+        <button
+          id="export"
+          class="btn btn-outline-primary d-block w-100 d-none"
+          type="button"
         >
-          Ошибка расчета
-        </div>
+          Выгрузить
+        </button>
         <div
-          id="calculationError"
+          id="error"
           class="mt-3 d-none danger"
         >
           Ошибка расчета
@@ -187,7 +193,7 @@
     </div>
   </form>
   <div
-    id="calculationTable"
+    id="table"
     class="table-container d-none"
   >
     <table class="table">
@@ -244,45 +250,23 @@
     </table>
   </div>
   <div
-    id="calculationLoading"
-    class="loading loading--content d-none d-flex justify-content-center align-items-center"
+    id="loading"
+    class="loading loading--content d-none"
   >
-    <div class="loading__content pt-4 pb-5 p-3">
+    <div class="loading__content pt-4 pb-4 p-3">
+      <h2 class="pt-5 pb-3 text-center">
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        Идет расчет...
+      </h2>
       <div
-        id="calculationInProgress"
-        class="d-flex align-items-center justify-content-center"
+        id="info"
+        class="d-none h4 text-center"
       >
-        <h2 class="pt-5 text-center">
-          <span
-            class="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          Идет расчет...
-        </h2>
-      </div>
-      <div
-        id="calculationComplete"
-        class="d-none"
-      >
-        <h2 class="mb-3 text-center">Результат расчета</h2>
-        <div class="text-center">
-          <button
-            id="calculationResult"
-            class="w-100 mb-3 btn btn-primary"
-            data-type="result"
-            >
-            Отобразить
-          </button>
-          <a class="w-100 mb-3 btn btn-primary" href="./files/export_order_20250306_12.xlsx">Выгрузить</a>
-          <!-- <button
-            id="calculationExport"
-            class="btn btn-outline-primary d-block w-100"
-            data-type="export"
-          >
-            Выгрузить
-          </button> -->
-        </div>
+        Номер расчета: <span id="id"></span>
       </div>
     </div>
   </div>

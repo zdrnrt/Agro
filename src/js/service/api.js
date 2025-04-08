@@ -30,7 +30,7 @@ export function get_order_calc_id(id) {
 }
 
 export function get_order_calc_result(id) {
-  return axios.get(`/api/order_calc/${id}/result/`);
+  return axios.get(`/api/order_calc/${id}/result/?ordering=-id&page_size=30`);
 }
 
 export function get_order_calc_export(id) {
