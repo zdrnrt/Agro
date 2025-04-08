@@ -247,7 +247,7 @@
     id="calculationLoading"
     class="loading loading--content d-none d-flex justify-content-center align-items-center"
   >
-    <div class="loading__content pt-4 pb-5 p-3">
+    <div class="loading__content pt-4 pb-4 p-3">
       <div
         id="calculationInProgress"
         class="d-flex align-items-center justify-content-center"
@@ -277,6 +277,7 @@
           <a
             class="w-100 mb-3 btn btn-primary"
             href="./files/export_order_20250306_12.xlsx"
+            onclick="document.getElementById('calculationLoading').classList.add('d-none');"
             >Выгрузить</a
           >
           <!-- <button
