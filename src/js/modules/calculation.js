@@ -13,8 +13,7 @@ function claclulationOpen() {
   moduleOpen('./src/html/calculation.html').then(() => {
     document.querySelector('[name="calc_date"]').valueAsDate = new Date();
     document.getElementById('form').addEventListener('submit', calculationFormSubmit);
-    document.getElementById('export').addEventListener('click', calculationExport);
-
+    document.getElementById('calculationMore').addEventListener('click', calculationMore);
     calculationCheck();
   });
 }
@@ -26,7 +25,7 @@ function calculationCheck() {
 
   if (!!localStorage.getItem('calculationInProgress')) {
     calculationStatus();
-    document.getElementById('loading').classList.remove('d-none');
+    document.getElementById('calculationLoading').classList.remove('d-none');
     return;
   }
   if (!!localStorage.getItem('calculationId')) {
@@ -37,19 +36,25 @@ function calculationCheck() {
 
 function calculationStatus() {
   const id = localStorage.getItem('calculationId');
+  if (!id){
+    return
+  }
   clearTimeout(window.calculationTimer);
   get_order_calc_id(id)
     .then((response) => {
       if (response.data.status == 'complete' || response.data.status == 'error') {
-        localStorage.removeItem('calculationInProgress');
-        if (document.getElementById('loading')) {
-          document.getElementById('loading').classList.add('d-none');
+        if (document.getElementById('calculationLoading')) {
+          document.getElementById('calculationLoading').classList.add('d-none');
           if (response.data.status == 'complete') {
             calculationResult();
+            if (localStorage.getItem('calculationInProgress') == 'export'){
+              calculationExport();
+            }
           } else {
             calculationError('Во время расчета произошла ошибка, попробуйте еще раз');
           }
         }
+        localStorage.removeItem('calculationInProgress');
       } else {
         window.calculationTimer = setTimeout(() => {
           calculationStatus();
@@ -75,17 +80,19 @@ function calculationFormSubmit(event) {
   localStorage.removeItem('calculationId');
   localStorage.removeItem('calculationInProgress');
   buttonToggleLoading(event.submitter);
-  document.getElementById('export').classList.add('d-none');
   /*
   calculationCheck();
   form.classList.remove('form--loading');
   buttonToggleLoading(event.submitter);
   */
-  document.getElementById('loading').classList.remove('d-none');
+  document.getElementById('calculationLoading').classList.remove('d-none');
   const form = event.target;
   form.classList.add('form--loading');
   const formData = new FormData(form);
-  localStorage.setItem('calculationInProgress', 1);
+  localStorage.setItem('calculationInProgress', event.submitter.dataset.type);
+
+  document.getElementById('result').classList.add('d-none');
+  document.getElementById('result').querySelector('tbody').innerHTML = '';
 
   const errorText = document.getElementById('error');
   errorText.classList.add('d-none');
@@ -113,13 +120,16 @@ function calculationFormSubmit(event) {
     });
 }
 
-function calculationResult() {
+function calculationResult(page = 1) {
   const id = localStorage.getItem('calculationId');
-  get_order_calc_result(id).then((response) => {
-    calculationRowDraw(response.data.results);
-    document.getElementById('table').classList.remove('d-none');
-    document.getElementById('table').classList.remove('d-none');
-    document.getElementById('export').classList.remove('d-none');
+  get_order_calc_result(id, page).then((response) => {
+    const { page_count, results } = response.data;
+    calculationRowDraw(results);
+    document.getElementById('result').classList.remove('d-none');
+    claclulationUpdateMore({
+      page_count: page_count,
+      page: Number(page) + 1,
+    });
   });
 }
 
@@ -134,7 +144,7 @@ function calculationExport() {
       console.error('ordersExport', error);
     })
     .finally(() => {
-      document.getElementById('loading').classList.add('d-none');
+      document.getElementById('calculationLoading').classList.add('d-none');
     });
 }
 
@@ -146,7 +156,6 @@ function calculationError(text) {
 
 function calculationRowDraw(list) {
   const table = document.getElementById('table').querySelector('tbody');
-  table.innerHTML = '';
   let template = '';
   for (const el of list) {
     template += `
@@ -177,4 +186,18 @@ function claclulationInfoToggle() {
   const calculationId = calculationInfo.querySelector('#id');
   calculationInfo.classList.toggle('d-none');
   calculationId.innerHTML = localStorage.getItem('calculationId') || '&mdash;';
+}
+
+function claclulationUpdateMore(request) {
+  const { page_count, page } = request;
+  const btn = document.getElementById('calculationMore');
+  btn.dataset.page = page;
+  if (page_count < page) {
+    btn.disabled = true;
+  }
+}
+
+function calculationMore(event){
+  const page = event.target.dataset.page;
+  calculationResult(page);
 }

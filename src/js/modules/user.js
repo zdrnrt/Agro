@@ -10,18 +10,15 @@ export function initUser() {
 }
 
 export function userCheck() {
-  const cookie = document.cookie.split('; ');
-  if (cookie.find((el) => el.includes('csrftoken'))) {
+  if (localStorage.getItem('user')) {
     setLogin();
     return true;
   }
-  /*
-  Modal.getOrCreateInstance(document.getElementById('userModal')).show();
-  */
   get_check_auth()
     .then((response) => {
       if (response.status == 200) {
-        setLogin(response.data.result);
+        localStorage.setItem('user', response.data.result);
+        setLogin();
         // return true
         return false;
       }

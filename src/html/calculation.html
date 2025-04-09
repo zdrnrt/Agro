@@ -177,9 +177,9 @@
           Рассчитать
         </button>
         <button
-          id="export"
-          class="btn btn-outline-primary d-block w-100 d-none"
-          type="button"
+          class="btn btn-outline-primary d-block w-100"
+          type="submit"
+          data-type="export"
         >
           Выгрузить
         </button>
@@ -192,9 +192,10 @@
       </div>
     </div>
   </form>
+  <div id="result" class="d-none">
   <div
     id="table"
-    class="table-container d-none"
+    class="mb-3 table-container"
   >
     <table class="table">
       <thead>
@@ -249,8 +250,19 @@
       <tbody></tbody>
     </table>
   </div>
+  <div>
+    
+    <button
+      id="calculationMore"
+      class="btn btn-outline-primary"
+      data-page="2"
+    >
+    Загрузить еще
+  </button>
+</div>
+</div>
   <div
-    id="loading"
+    id="calculationLoading"
     class="loading loading--content d-none"
   >
     <div class="loading__content pt-4 pb-4 p-3">

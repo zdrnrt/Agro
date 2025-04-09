@@ -7,13 +7,12 @@ import { userCheck } from './user';
 
 export function initOrders() {
   document.getElementById('nav-orders').addEventListener('click', ordersOpen);
-  document.getElementById('ordersMore').addEventListener('click', ordersMore);
 }
 
 function ordersOpen() {
   loadingToggle();
   moduleOpen('./src/html/orders.html').then(() => {
-    initOrders();
+    document.getElementById('ordersMore').addEventListener('click', ordersMore);
     ordersLoad();
     loadingToggle();
   });
@@ -53,7 +52,6 @@ function ordersLoad(page = 1) {
       });
     })
     .finally(() => {
-      console.log('finally')
       loadingToggle();
     });
 };

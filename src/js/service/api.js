@@ -29,8 +29,8 @@ export function get_order_calc_id(id) {
   return axios.get(`/api/order_calc/${id}`);
 }
 
-export function get_order_calc_result(id) {
-  return axios.get(`/api/order_calc/${id}/result/?ordering=-id&page_size=30`);
+export function get_order_calc_result(id, page) {
+  return axios.get(`/api/order_calc/${id}/result/?ordering=-id&page_size=30&page=${page}`);
 }
 
 export function get_order_calc_export(id) {
