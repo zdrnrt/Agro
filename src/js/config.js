@@ -1,1 +1,0 @@
-export const AUTH = 'YWRtaW46ZklDWXRpYUdlT3BF';

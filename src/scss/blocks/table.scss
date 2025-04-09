@@ -5,15 +5,29 @@
   width: 100%;
   display: block;
   overflow-x: auto;
+  min-height: 400px;
   border-radius: $border-radius;
   border: var(--bs-border-width) solid var(--bs-table-border-color);
+  &--calculation{
+    max-height: calc(100vh - 340px);
+    @media screen and (min-width: 1600px) {
+      max-height: calc(100vh - 490px);
+    }
+  }
+  &--orders,
+  &--loaded{
+    max-height: calc(100vh - 100px);
+    @media screen and (min-width: 1600px) {
+      max-height: calc(100vh - 140px);
+    }
+  }
 }
 .table {
   --bs-table-color: #{$cl-black};
   margin-bottom: 0;
-  &--fixed-head {
+  &--fixed-thead {
     thead {
-      position: fixed;
+      position: sticky;
       top: 0;
     }
   }

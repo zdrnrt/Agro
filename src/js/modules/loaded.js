@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { loadingToggle } from '../blocks/loading';
 import { moduleOpen } from '../service/tools';
 import { userCheck } from '../modules/user';
+import { updateMore } from '../blocks/updateMore'
 
 export function initLoaded() {
   document.getElementById('nav-loaded').addEventListener('click', loadedOpen);
@@ -14,6 +15,7 @@ export async function loadedOpen() {
     document.getElementById('loadedMore').addEventListener('click', loadedMore);
     loadedLoadFiles();
     loadingToggle();
+    console.log(userCheck())
   });
 }
 
@@ -22,19 +24,17 @@ function loadedLoadFiles(page = 1) {
     return;
   }
   loadingToggle();
-
-  /*
-  loadedRowDraw(testResult.results);
-  loadingToggle();
-  */
   return get_imported_files(page)
     .then((response) => {
       const { page_count, results } = response.data;
       loadedRowDraw(results);
-      loadedUpdateMore({
+      updateMore(document.getElementById('loadedMore'), {
         page_count: page_count,
         page: Number(page) + 1,
       });
+    })
+    .catch((error) => {
+
     })
     .finally(() => {
       loadingToggle();
@@ -54,15 +54,6 @@ function loadedRowDraw(list) {
         </tr>`;
   }
   table.insertAdjacentHTML('beforeend', template);
-}
-
-function loadedUpdateMore(request) {
-  const { page_count, page } = request;
-  const btn = document.getElementById('loadedMore');
-  btn.dataset.page = page;
-  if (page_count < page) {
-    btn.disabled = true;
-  }
 }
 
 function loadedMore(event) {

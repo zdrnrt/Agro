@@ -19,14 +19,13 @@ export function userCheck() {
       if (response.status == 200) {
         localStorage.setItem('user', response.data.result);
         setLogin();
-        // return true
         return false;
       }
-      Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+      userOpen(true);
       return false;
     })
     .catch((error) => {
-      Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+      userOpen(true);
       console.error('userCheck', error);
       return false;
     });
@@ -34,12 +33,6 @@ export function userCheck() {
 
 function userSubmit(event) {
   event.preventDefault();
-  /*
-  buttonToggleLoading(event.submitter);
-  document.cookie = 'csrftoken=test';
-  setLogin('test account');
-  Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
-  */
   const form = event.target;
   form.classList.add('form--loading');
   buttonToggleLoading(event.submitter);
@@ -48,7 +41,6 @@ function userSubmit(event) {
   errorText.classList.add('d-none');
   login(formData)
     .then((response) => {
-      console.log('userSubmit response', response);
       if (response.status != 200) {
         errorText.textContent = response.data.error || 'Ошибка авторизации, проверьте логин и пароль';
         return;
@@ -56,7 +48,8 @@ function userSubmit(event) {
       form.reset();
       localStorage.setItem('user', response.data.result);
       setLogin();
-      Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
+      userHide();
+      // Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
     })
     .catch((error) => {
       console.log('userSubmit error', error);
@@ -81,7 +74,7 @@ function userLogout() {
       if (response.status == 200) {
         localStorage.removeItem('user');
         document.getElementById('user').classList.add('d-none');
-        Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+        userOpen();
       }
     })
     .catch((error) => {
@@ -90,4 +83,17 @@ function userLogout() {
     .finally(() => {
       loadingToggle();
     });
+}
+
+function userOpen(error = false){
+  Modal.getOrCreateInstance(document.getElementById('userModal')).show();
+  if (error){
+    const errorText = document.getElementById('userFormError');
+    errorText.classList.remove('d-none');
+    errorText.textContent = 'Для доступа к приложению требуется авторизация';
+  }
+}
+function userHide(){
+  document.getElementById('userFormError').classList.add('d-none');
+  Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
 }

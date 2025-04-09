@@ -19,7 +19,6 @@ function ordersOpen() {
 }
 
 function ordersExport(event) {
-  /*
   const id = event.target.closest('[data-id]').dataset.id;
   get_order_calc_export(id)
     .then((response) => {
@@ -29,7 +28,6 @@ function ordersExport(event) {
       alert(`Ошибка скачивания файла с id: ${id}`);
       console.error('ordersExport', error);
     });
-    */
 }
 
 function ordersLoad(page = 1) {
@@ -60,10 +58,9 @@ function ordersRowDraw(list) {
   const table = document.getElementById('ordersTable').querySelector('tbody');
   let template = '';
   for (const el of list) {
-    // <td align="center"><button class="btn btn-link p-0" data-id="${el['calc_id']}" ${el['status'] != 'complete' ? 'disabled' : ''}>dddd<i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
     template += `
     <tr>
-    <td align="center"><a href="./files/export_order_20250306_12.xlsx" class="btn btn-link p-0" data-id="${el['calc_id']}"><i class="fa fa-cloud-download-alt fa-2x"></i></a></td>
+        <td align="center"><button class="btn btn-link p-0" data-id="${el['calc_id']}" ${el['status'] != 'complete' ? 'disabled' : ''}><i class="fa fa-cloud-download-alt fa-2x"></i></button></td>
         <td>${el['calc_id']}</td>
         <td>${format(new Date(el['calc_date']), 'dd.LL.yyy')}</td>
         <td>${el['status']}</td>
