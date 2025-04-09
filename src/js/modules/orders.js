@@ -54,7 +54,7 @@ function ordersLoad(page = 1) {
     .finally(() => {
       loadingToggle();
     });
-};
+}
 
 function ordersRowDraw(list) {
   const table = document.getElementById('ordersTable').querySelector('tbody');

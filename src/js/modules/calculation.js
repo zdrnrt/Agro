@@ -36,8 +36,8 @@ function calculationCheck() {
 
 function calculationStatus() {
   const id = localStorage.getItem('calculationId');
-  if (!id){
-    return
+  if (!id) {
+    return;
   }
   clearTimeout(window.calculationTimer);
   get_order_calc_id(id)
@@ -47,7 +47,7 @@ function calculationStatus() {
           document.getElementById('calculationLoading').classList.add('d-none');
           if (response.data.status == 'complete') {
             calculationResult();
-            if (localStorage.getItem('calculationInProgress') == 'export'){
+            if (localStorage.getItem('calculationInProgress') == 'export') {
               calculationExport();
             }
           } else {
@@ -197,7 +197,7 @@ function claclulationUpdateMore(request) {
   }
 }
 
-function calculationMore(event){
+function calculationMore(event) {
   const page = event.target.dataset.page;
   calculationResult(page);
 }

@@ -65,7 +65,7 @@ function loadedUpdateMore(request) {
   }
 }
 
-function loadedMore(event){
+function loadedMore(event) {
   const page = event.target.dataset.page;
   loadedLoadFiles(page);
 }

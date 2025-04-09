@@ -1,3 +1,1 @@
-export function udpateMore(elem, ) {
-
-}
+export function udpateMore(elem) {}

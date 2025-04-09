@@ -192,31 +192,34 @@
       </div>
     </div>
   </form>
-  <div id="result" class="d-none">
   <div
-    id="table"
-    class="mb-3 table-container"
+    id="result"
+    class="d-none"
   >
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Дата расчета</th>
-          <th>Склад</th>
-          <th>mdmkey ТМЦ</th>
-          <th>Код ТМЦ</th>
-          <th>Номенклатура</th>
-          <th>Единица измерения</th>
-          <th>Группа номенклатур</th>
-          <th>Срок годности, дней</th>
-          <th>Срок отгрузки, дней</th>
-          <th>Минимальная партия, ед.и.</th>
-          <th>Прогноз, ед.и.</th>
-          <th>Страховой запас, дней</th>
-          <th>Норма запаса, дней</th>
-          <th>Заказ, ед.и.</th>
-          <th>ДДС</th>
+    <div
+      id="table"
+      class="mb-3 table-container"
+    >
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Дата расчета</th>
+            <th>Склад</th>
+            <th>mdmkey ТМЦ</th>
+            <th>Код ТМЦ</th>
+            <th>Номенклатура</th>
+            <th>Единица измерения</th>
+            <th>Группа номенклатур</th>
+            <th>Срок годности, дней</th>
+            <th>Срок отгрузки, дней</th>
+            <th>Минимальная партия, ед.и.</th>
+            <th>Прогноз, ед.и.</th>
+            <th>Страховой запас, дней</th>
+            <th>Норма запаса, дней</th>
+            <th>Заказ, ед.и.</th>
+            <th>ДДС</th>
 
-          <!--                 
+            <!--                 
                 <th>Дата расчет</th>
                 <th>Статус расчета</th>
                 <th>Верхняя граница, σ</th>
@@ -245,22 +248,21 @@
                 <th>final_order_qty</th>
                 <th>dds</th>
                  -->
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div>
+      <button
+        id="calculationMore"
+        class="btn btn-outline-primary"
+        data-page="2"
+      >
+        Загрузить еще
+      </button>
+    </div>
   </div>
-  <div>
-    
-    <button
-      id="calculationMore"
-      class="btn btn-outline-primary"
-      data-page="2"
-    >
-    Загрузить еще
-  </button>
-</div>
-</div>
   <div
     id="calculationLoading"
     class="loading loading--content d-none"
