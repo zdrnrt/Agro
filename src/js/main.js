@@ -9,7 +9,6 @@ import './blocks/aside';
 import './blocks/loading';
 import './blocks/form';
 import './blocks/button';
-import './blocks/updateMore.js';
 
 import './modules/calculation';
 import './modules/orders';

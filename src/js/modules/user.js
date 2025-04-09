@@ -85,15 +85,15 @@ function userLogout() {
     });
 }
 
-function userOpen(error = false){
+export function userOpen(error = false) {
   Modal.getOrCreateInstance(document.getElementById('userModal')).show();
-  if (error){
+  if (error) {
     const errorText = document.getElementById('userFormError');
     errorText.classList.remove('d-none');
     errorText.textContent = 'Для доступа к приложению требуется авторизация';
   }
 }
-function userHide(){
+function userHide() {
   document.getElementById('userFormError').classList.add('d-none');
   Modal.getOrCreateInstance(document.getElementById('userModal')).hide();
 }

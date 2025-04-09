@@ -1,9 +1,8 @@
 import { get_imported_files } from '../service/api';
 import { format } from 'date-fns';
 import { loadingToggle } from '../blocks/loading';
-import { moduleOpen } from '../service/tools';
-import { userCheck } from '../modules/user';
-import { updateMore } from '../blocks/updateMore'
+import { moduleOpen, updateMore, errorShow, errorHide } from '../service/tools';
+import { userCheck, userOpen } from '../modules/user';
 
 export function initLoaded() {
   document.getElementById('nav-loaded').addEventListener('click', loadedOpen);
@@ -13,13 +12,13 @@ export async function loadedOpen() {
   loadingToggle();
   await moduleOpen('./src/html/loaded.html').then(() => {
     document.getElementById('loadedMore').addEventListener('click', loadedMore);
-    loadedLoadFiles();
+    errorHide();
+    loadedLoad();
     loadingToggle();
-    console.log(userCheck())
   });
 }
 
-function loadedLoadFiles(page = 1) {
+function loadedLoad(page = 1) {
   if (!userCheck()) {
     return;
   }
@@ -28,13 +27,18 @@ function loadedLoadFiles(page = 1) {
     .then((response) => {
       const { page_count, results } = response.data;
       loadedRowDraw(results);
-      updateMore(document.getElementById('loadedMore'), {
+      updateMore('loadedMore', {
         page_count: page_count,
         page: Number(page) + 1,
       });
     })
     .catch((error) => {
-
+      if (error.status == 403) {
+        userOpen(true);
+        return;
+      }
+      errorShow('Во время загрузки произошла ошибка, попробуйте еще раз');
+      console.error('loadedLoad', error);
     })
     .finally(() => {
       loadingToggle();
@@ -58,5 +62,5 @@ function loadedRowDraw(list) {
 
 function loadedMore(event) {
   const page = event.target.dataset.page;
-  loadedLoadFiles(page);
+  loadedLoad(page);
 }

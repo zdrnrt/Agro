@@ -8,14 +8,14 @@
   min-height: 400px;
   border-radius: $border-radius;
   border: var(--bs-border-width) solid var(--bs-table-border-color);
-  &--calculation{
+  &--calculation {
     max-height: calc(100vh - 340px);
     @media screen and (min-width: 1600px) {
       max-height: calc(100vh - 490px);
     }
   }
   &--orders,
-  &--loaded{
+  &--loaded {
     max-height: calc(100vh - 100px);
     @media screen and (min-width: 1600px) {
       max-height: calc(100vh - 140px);

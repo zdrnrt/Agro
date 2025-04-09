@@ -1,8 +1,9 @@
 import { post_order_calc, get_order_calc_result, get_order_calc_export, get_order_calc_id } from '../service/api';
 import { format } from 'date-fns';
 import { buttonToggleLoading } from '../blocks/button';
-import { moduleOpen, downloadFile } from '../service/tools';
-import { userCheck } from './user';
+import { loadingToggle } from '../blocks/loading';
+import { moduleOpen, downloadFile, errorShow, errorHide, updateMore } from '../service/tools';
+import { userCheck, userOpen } from './user';
 
 export function initCalculation() {
   document.getElementById('nav-calculation').addEventListener('click', claclulationOpen);
@@ -10,10 +11,13 @@ export function initCalculation() {
 }
 
 function claclulationOpen() {
+  loadingToggle();
   moduleOpen('./src/html/calculation.html').then(() => {
     document.querySelector('[name="calc_date"]').valueAsDate = new Date();
     document.getElementById('form').addEventListener('submit', calculationFormSubmit);
     document.getElementById('calculationMore').addEventListener('click', calculationMore);
+    errorHide();
+    loadingToggle();
     calculationCheck();
   });
 }
@@ -50,11 +54,11 @@ function calculationStatus() {
             if (localStorage.getItem('calculationInProgress') == 'export') {
               calculationExport();
             }
+            localStorage.removeItem('calculationInProgress');
           } else {
-            calculationError('Во время расчета произошла ошибка, попробуйте еще раз');
+            errorShow('Во время расчета произошла ошибка, попробуйте еще раз');
           }
         }
-        localStorage.removeItem('calculationInProgress');
       } else {
         window.calculationTimer = setTimeout(() => {
           calculationStatus();
@@ -63,6 +67,12 @@ function calculationStatus() {
       // response.data.results.calc_id
     })
     .catch((error) => {
+      document.getElementById('calculationLoading').classList.add('d-none');
+      if (error.status == 403) {
+        userOpen(true);
+        return;
+      }
+      errorShow('Во время расчета произошла ошибка, попробуйте еще раз');
       console.error('calculationStatus', error);
       localStorage.removeItem('calculationInProgress');
     });
@@ -93,9 +103,7 @@ function calculationFormSubmit(event) {
 
   document.getElementById('result').classList.add('d-none');
   document.getElementById('result').querySelector('tbody').innerHTML = '';
-
-  const errorText = document.getElementById('error');
-  errorText.classList.add('d-none');
+  errorHide();
 
   post_order_calc(formData)
     .then((response) => {
@@ -103,16 +111,15 @@ function calculationFormSubmit(event) {
       localStorage.setItem('calculationId', data.calc_id);
       claclulationInfoToggle();
       calculationCheck(data.calc_id);
-      console.log('data', data);
     })
     .catch((error) => {
-      // console.log('post_order_calc', error);
+      document.getElementById('calculationLoading').classList.add('d-none');
+      localStorage.removeItem('calculationInProgress');
       if (error.status == 403) {
-        calculationError('Ошибка авторизации, попробуйте переавторизоваться');
+        userOpen(true);
         return;
       }
-      calculationError('Во время расчета произошла ошибка, попробуйте еще раз');
-      localStorage.removeItem('calculationInProgress');
+      errorShow('Во время расчета произошла ошибка, попробуйте еще раз');
     })
     .finally(() => {
       form.classList.remove('form--loading');
@@ -122,15 +129,24 @@ function calculationFormSubmit(event) {
 
 function calculationResult(page = 1) {
   const id = localStorage.getItem('calculationId');
-  get_order_calc_result(id, page).then((response) => {
-    const { page_count, results } = response.data;
-    calculationRowDraw(results);
-    document.getElementById('result').classList.remove('d-none');
-    claclulationUpdateMore({
-      page_count: page_count,
-      page: Number(page) + 1,
+  get_order_calc_result(id, page)
+    .then((response) => {
+      const { page_count, results } = response.data;
+      calculationRowDraw(results);
+      document.getElementById('result').classList.remove('d-none');
+      updateMore('calculationMore', {
+        page_count: page_count,
+        page: Number(page) + 1,
+      });
+    })
+    .catch((error) => {
+      if (error.status == 403) {
+        userOpen(true);
+        return;
+      }
+      errorShow('Во время расчета произошла ошибка, попробуйте еще раз');
+      console.error('calculationResult', error);
     });
-  });
 }
 
 function calculationExport() {
@@ -140,18 +156,16 @@ function calculationExport() {
       downloadFile(response);
     })
     .catch((error) => {
-      alert(`Ошибка скачивания файла с id: ${id}`);
+      //     if (error.status == 403) {
+      //   userOpen(true);
+      //   return;
+      // }
+      errorShow(`Ошибка скачивания файла номер расчета ${id}`);
       console.error('ordersExport', error);
     })
     .finally(() => {
       document.getElementById('calculationLoading').classList.add('d-none');
     });
-}
-
-function calculationError(text) {
-  const errorText = document.getElementById('error');
-  errorText.classList.remove('d-none');
-  errorText.textContent = text;
 }
 
 function calculationRowDraw(list) {
@@ -186,15 +200,6 @@ function claclulationInfoToggle() {
   const calculationId = calculationInfo.querySelector('#id');
   calculationInfo.classList.toggle('d-none');
   calculationId.innerHTML = localStorage.getItem('calculationId') || '&mdash;';
-}
-
-function claclulationUpdateMore(request) {
-  const { page_count, page } = request;
-  const btn = document.getElementById('calculationMore');
-  btn.dataset.page = page;
-  if (page_count < page) {
-    btn.disabled = true;
-  }
 }
 
 function calculationMore(event) {

@@ -27,3 +27,21 @@ export function moduleOpen(path) {
       console.error('Возникла проблема с операцией выборки:', error);
     });
 }
+
+export function errorShow(text) {
+  const errorText = document.getElementById('error');
+  errorText.classList.remove('d-none');
+  errorText.textContent = text;
+}
+export function errorHide() {
+  document.getElementById('error').classList.add('d-none');
+}
+
+export function updateMore(id, request) {
+  const elem = document.getElementById(id);
+  const { page_count, page } = request;
+  elem.dataset.page = page;
+  if (page_count < page) {
+    elem.disabled = true;
+  }
+}

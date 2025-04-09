@@ -2,8 +2,8 @@ import { get_order_calc, get_order_calc_export } from '../service/api';
 import { downloadFile } from '../service/tools';
 import { format } from 'date-fns';
 import { loadingToggle } from '../blocks/loading';
-import { moduleOpen } from '../service/tools';
-import { userCheck } from './user';
+import { moduleOpen, updateMore, errorShow, errorHide } from '../service/tools';
+import { userCheck, userOpen } from './user';
 
 export function initOrders() {
   document.getElementById('nav-orders').addEventListener('click', ordersOpen);
@@ -13,41 +13,53 @@ function ordersOpen() {
   loadingToggle();
   moduleOpen('./src/html/orders.html').then(() => {
     document.getElementById('ordersMore').addEventListener('click', ordersMore);
+    errorHide();
     ordersLoad();
     loadingToggle();
   });
 }
 
 function ordersExport(event) {
+  errorHide();
   const id = event.target.closest('[data-id]').dataset.id;
   get_order_calc_export(id)
     .then((response) => {
       downloadFile(response);
     })
     .catch((error) => {
+      if (error.status == 403) {
+        userOpen(true);
+        return;
+      }
+      errorShow('Во время загрузки произошла ошибка, попробуйте еще раз');
       alert(`Ошибка скачивания файла с id: ${id}`);
       console.error('ordersExport', error);
     });
 }
 
 function ordersLoad(page = 1) {
+  errorHide();
   if (!userCheck()) {
     return;
   }
 
   loadingToggle();
-  /*
-  ordersRowDraw(testResult.results);
-  loadingToggle();
-  */
   get_order_calc(page)
     .then((response) => {
       const { page_count, results } = response.data;
       ordersRowDraw(results);
-      ordersUpdateMore({
+      updateMore('ordersMore', {
         page_count: page_count,
         page: Number(page) + 1,
       });
+    })
+    .catch((error) => {
+      if (error.status == 403) {
+        userOpen(true);
+        return;
+      }
+      errorShow('Во время загрузки произошла ошибка, попробуйте еще раз');
+      console.error('ordersLoad', error);
     })
     .finally(() => {
       loadingToggle();
@@ -81,15 +93,6 @@ function ordersRowDraw(list) {
   table.insertAdjacentHTML('beforeend', template);
   for (const btn of table.querySelectorAll('[data-id].btn-link')) {
     btn.addEventListener('click', ordersExport);
-  }
-}
-
-function ordersUpdateMore(request) {
-  const { page_count, page } = request;
-  const btn = document.getElementById('ordersMore');
-  btn.dataset.page = page;
-  if (page_count < page) {
-    btn.disabled = true;
   }
 }
 
