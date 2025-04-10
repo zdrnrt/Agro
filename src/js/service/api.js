@@ -1,4 +1,3 @@
-// import { AUTH } from '../config';
 import axios from 'axios';
 
 export function check_auth() {

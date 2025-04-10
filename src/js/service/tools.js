@@ -45,3 +45,18 @@ export function updateMore(id, request) {
     elem.disabled = true;
   }
 }
+
+export function getCookie(name) {
+  if (!document.cookie) {
+    return null;
+  }
+
+  let result = document.cookie.split(';')
+    .map(c => c.trim())
+    .filter(c => c.startsWith(name + '='));
+
+  if (result.length === 0) {
+    return null;
+  }
+  return decodeURIComponent(result[0].split('=')[1]);
+}

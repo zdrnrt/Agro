@@ -9,7 +9,7 @@
   border-radius: $border-radius;
   border: var(--bs-border-width) solid var(--bs-table-border-color);
   &--calculation {
-    max-height: calc(100vh - 340px);
+    max-height: calc(100vh - 345px);
     @media screen and (min-width: 1600px) {
       max-height: calc(100vh - 490px);
     }

@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { login, get_check_auth, logout } from '../service/api';
 import { buttonToggleLoading } from '../blocks/button';
 import { Modal } from 'bootstrap';
 import { loadingToggle } from '../blocks/loading';
+import { getCookie } from '../service/tools';
 
 export function initUser() {
   document.getElementById('userForm').addEventListener('submit', userSubmit);
@@ -10,7 +12,7 @@ export function initUser() {
 }
 
 export function userCheck() {
-  if (localStorage.getItem('user')) {
+  if (localStorage.getItem('user') && getCookie('csrftoken')) {
     setLogin();
     return true;
   }
@@ -65,6 +67,10 @@ function userSubmit(event) {
 function setLogin() {
   document.getElementById('user').classList.remove('d-none');
   document.getElementById('userName').textContent = localStorage.getItem('user');
+  if(getCookie('csrftoken')){
+    axios.defaults.headers.common['X-CSRFToken'] = getCookie('csrftoken');
+  }
+
 }
 
 function userLogout() {

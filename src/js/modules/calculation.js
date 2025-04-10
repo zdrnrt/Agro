@@ -16,6 +16,7 @@ function claclulationOpen() {
     document.querySelector('[name="calc_date"]').valueAsDate = new Date();
     document.getElementById('form').addEventListener('submit', calculationFormSubmit);
     document.getElementById('calculationMore').addEventListener('click', calculationMore);
+    document.getElementById('export').addEventListener('click', calculationExport);
     errorHide();
     loadingToggle();
     calculationCheck();
@@ -44,16 +45,15 @@ function calculationStatus() {
     return;
   }
   clearTimeout(window.calculationTimer);
+  claclulationInfoShow();
   get_order_calc_id(id)
     .then((response) => {
       if (response.data.status == 'complete' || response.data.status == 'error') {
         if (document.getElementById('calculationLoading')) {
+          claclulationInfoHide();
           document.getElementById('calculationLoading').classList.add('d-none');
           if (response.data.status == 'complete') {
             calculationResult();
-            if (localStorage.getItem('calculationInProgress') == 'export') {
-              calculationExport();
-            }
             localStorage.removeItem('calculationInProgress');
           } else {
             errorShow('Во время расчета произошла ошибка, попробуйте еще раз');
@@ -67,6 +67,7 @@ function calculationStatus() {
       // response.data.results.calc_id
     })
     .catch((error) => {
+      claclulationInfoHide();
       document.getElementById('calculationLoading').classList.add('d-none');
       if (error.status == 403) {
         userOpen(true);
@@ -87,9 +88,11 @@ function calculationFormSubmit(event) {
   if (!userCheck()) {
     return;
   }
+  document.getElementById('export').classList.add('d-none');
   localStorage.removeItem('calculationId');
   localStorage.removeItem('calculationInProgress');
   buttonToggleLoading(event.submitter);
+  claclulationInfoHide();
   /*
   calculationCheck();
   form.classList.remove('form--loading');
@@ -109,10 +112,10 @@ function calculationFormSubmit(event) {
     .then((response) => {
       const { data } = response;
       localStorage.setItem('calculationId', data.calc_id);
-      claclulationInfoToggle();
       calculationCheck(data.calc_id);
     })
     .catch((error) => {
+      claclulationInfoHide();
       document.getElementById('calculationLoading').classList.add('d-none');
       localStorage.removeItem('calculationInProgress');
       if (error.status == 403) {
@@ -134,6 +137,7 @@ function calculationResult(page = 1) {
       const { page_count, results } = response.data;
       calculationRowDraw(results);
       document.getElementById('result').classList.remove('d-none');
+      document.getElementById('export').classList.remove('d-none');
       updateMore('calculationMore', {
         page_count: page_count,
         page: Number(page) + 1,
@@ -156,10 +160,10 @@ function calculationExport() {
       downloadFile(response);
     })
     .catch((error) => {
-      //     if (error.status == 403) {
-      //   userOpen(true);
-      //   return;
-      // }
+      if (error.status == 403) {
+        userOpen(true);
+        return;
+      }
       errorShow(`Ошибка скачивания файла номер расчета ${id}`);
       console.error('ordersExport', error);
     })
@@ -195,11 +199,17 @@ function calculationRowDraw(list) {
   table.insertAdjacentHTML('beforeend', template);
 }
 
-function claclulationInfoToggle() {
-  const calculationInfo = document.getElementById('info');
-  const calculationId = calculationInfo.querySelector('#id');
-  calculationInfo.classList.toggle('d-none');
-  calculationId.innerHTML = localStorage.getItem('calculationId') || '&mdash;';
+function claclulationInfoShow() {
+  if (localStorage.getItem('calculationId')){
+    const calculationInfo = document.getElementById('info');
+    const calculationId = calculationInfo.querySelector('#id');
+    calculationInfo.classList.remove('d-none');
+    calculationId.innerHTML = localStorage.getItem('calculationId');
+  }
+}
+
+function claclulationInfoHide() {
+  document.getElementById('info').classList.add('d-none');
 }
 
 function calculationMore(event) {
