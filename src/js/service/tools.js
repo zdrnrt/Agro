@@ -51,9 +51,10 @@ export function getCookie(name) {
     return null;
   }
 
-  let result = document.cookie.split(';')
-    .map(c => c.trim())
-    .filter(c => c.startsWith(name + '='));
+  let result = document.cookie
+    .split(';')
+    .map((c) => c.trim())
+    .filter((c) => c.startsWith(name + '='));
 
   if (result.length === 0) {
     return null;

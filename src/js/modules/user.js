@@ -67,10 +67,9 @@ function userSubmit(event) {
 function setLogin() {
   document.getElementById('user').classList.remove('d-none');
   document.getElementById('userName').textContent = localStorage.getItem('user');
-  if(getCookie('csrftoken')){
+  if (getCookie('csrftoken')) {
     axios.defaults.headers.common['X-CSRFToken'] = getCookie('csrftoken');
   }
-
 }
 
 function userLogout() {

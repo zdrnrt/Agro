@@ -200,7 +200,7 @@ function calculationRowDraw(list) {
 }
 
 function claclulationInfoShow() {
-  if (localStorage.getItem('calculationId')){
+  if (localStorage.getItem('calculationId')) {
     const calculationInfo = document.getElementById('info');
     const calculationId = calculationInfo.querySelector('#id');
     calculationInfo.classList.remove('d-none');
