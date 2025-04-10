@@ -7,17 +7,13 @@
       content="width=device-width, initial-scale=1.0"
     />
     <link
-      rel="stylesheet"
-      href="./style.scss"
-    />
-    <link
       rel="icon"
       href="/Agro/logo_sputnik.png"
       type="image/png"
     />
     <title>AGRO</title>
-    <script type="module" crossorigin src="/Agro/assets/index-CvQbcYp7.js"></script>
-    <link rel="stylesheet" crossorigin href="/Agro/assets/index-DoaewtR0.css">
+    <script type="module" crossorigin src="/Agro/assets/index-DFZIgyEl.js"></script>
+    <link rel="stylesheet" crossorigin href="/Agro/assets/index-BXEIXgZz.css">
   </head>
 
   <body>
@@ -27,14 +23,14 @@
           id="aside"
           class="aside col-2"
         >
-          <div class="aside__content d-flex flex-column justify-content-start align-items-start">
+          <div class="h-100 aside__content d-flex flex-column justify-content-start align-items-start">
             <nav
               id="nav"
               class="aside__nav aside-nav"
             >
               <button
                 id="nav-calculation"
-                class="aside-nav__item nav-item d-flex justify-content-start align-items-center"
+                class="aside-nav__item nav-item nav-item--active d-flex justify-content-start align-items-center"
               >
                 <img
                   src="/Agro/images/icons/table.svg"
@@ -68,7 +64,7 @@
             </nav>
             <div
               id="user"
-              class="d-none aside__profile aside-profile d-flex justify-content-between align-items-center gap-2 border-top border-bottom"
+              class="d-none aside__profile aside-profile d-flex justify-content-between align-items-center gap-2 border-top"
             >
               <div class="aside-profile__user user flex-grow-1 d-flex justify-content-start align-items-center">
                 <img
@@ -132,7 +128,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title">Авторизация</h1>
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           </div>
 
           <form
@@ -180,6 +175,7 @@
                 class="btn btn-primary form__submit w-100"
                 type="submit"
               >
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Войти
               </button>
             </div>
