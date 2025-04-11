@@ -179,8 +179,8 @@ function calculationRowDraw(list) {
     template += `
           <tr>
             <td>${format(new Date(el['calc_date']), 'dd.LL.yyy')}</td>
-            <td>${el['status'] || ''}</td>
             <td>${el['division'] || ''}</td>
+            <td>${el['mdmkey'] || ''}</td>
             <td>${el['code'] || ''}</td>
             <td>${el['nomenclature'] || ''}</td>
             <td>${el['unit'] || ''}</td>
