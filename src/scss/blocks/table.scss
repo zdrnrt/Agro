@@ -57,7 +57,6 @@
   th {
     background-color: $cl-table-bg;
     font-weight: 500;
-    vertical-align: baseline;
   }
   td,
   th {
@@ -67,8 +66,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  td {
   }
   th:first-child,
   td:first-child {
